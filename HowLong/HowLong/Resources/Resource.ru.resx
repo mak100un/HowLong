@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AprilText" xml:space="preserve">
+    <value>Апрель</value>
+  </data>
+  <data name="AugustText" xml:space="preserve">
+    <value>Август</value>
+  </data>
+  <data name="BreakAction" xml:space="preserve">
+    <value>Перерыв</value>
+  </data>
+  <data name="BreakEndButton" xml:space="preserve">
+    <value>Конец перерыва</value>
+  </data>
+  <data name="BreakStartButton" xml:space="preserve">
+    <value>Начало перерыва</value>
+  </data>
+  <data name="BreaksText" xml:space="preserve">
+    <value>Перерывы: </value>
+  </data>
+  <data name="BreakText" xml:space="preserve">
+    <value>Перерыв: </value>
+  </data>
+  <data name="CancelAction" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="ClearHistoryButton" xml:space="preserve">
+    <value>Очистить историю</value>
+  </data>
+  <data name="ClearHistoryText" xml:space="preserve">
+    <value>Вы уверены, что хотите очистить историю?</value>
+  </data>
+  <data name="ClearHistoryTitle" xml:space="preserve">
+    <value>Очистить историю?</value>
+  </data>
+  <data name="CurrentDayButton" xml:space="preserve">
+    <value>Текущий день  </value>
+  </data>
+  <data name="CurrentDayText" xml:space="preserve">
+    <value>Текущий день:</value>
+  </data>
+  <data name="CurrentDayTitle" xml:space="preserve">
+    <value>Текущий день</value>
+  </data>
+  <data name="DarkThemeButton" xml:space="preserve">
+    <value>Тёмная</value>
+  </data>
+  <data name="DayEndedAction" xml:space="preserve">
+    <value>Хорошо, так и сделаю</value>
+  </data>
+  <data name="DayEndedText" xml:space="preserve">
+    <value>Вы хорошенько поработали, теперь можно и отдохнуть, например, за просмотром фильма, чтением интересной книги или занятием спортом😉</value>
+  </data>
+  <data name="DayEndedTitle" xml:space="preserve">
+    <value>День окончен!</value>
+  </data>
+  <data name="DayIsOverText" xml:space="preserve">
+    <value>Поздравляем, вы успешно отработали рабочую норму текущего дня👏</value>
+  </data>
+  <data name="DayIsOverTitle" xml:space="preserve">
+    <value>Рабочий день завершён!</value>
+  </data>
+  <data name="DaySuccessDeleteText" xml:space="preserve">
+    <value>День успешно удалён</value>
+  </data>
+  <data name="DaySuccessEndedText" xml:space="preserve">
+    <value>День успешно завершён</value>
+  </data>
+  <data name="DaySuccessUpdatedText" xml:space="preserve">
+    <value>День успешно обновлён</value>
+  </data>
+  <data name="DecemberText" xml:space="preserve">
+    <value>Декабрь</value>
+  </data>
+  <data name="DeleteAction" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DeleteBreakText" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить данный перерыв?</value>
+  </data>
+  <data name="DeleteBreakTitle" xml:space="preserve">
+    <value>Удалить перерыв?</value>
+  </data>
+  <data name="DeleteDayText" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить учётный день?</value>
+  </data>
+  <data name="DeleteDayTitle" xml:space="preserve">
+    <value>Удалить день?</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="EditingTitle" xml:space="preserve">
+    <value>Редактирование</value>
+  </data>
+  <data name="EmptyHistoryText" xml:space="preserve">
+    <value>История пуста</value>
+  </data>
+  <data name="EndDayButton" xml:space="preserve">
+    <value>Завершить день</value>
+  </data>
+  <data name="EndDayText" xml:space="preserve">
+    <value>Вы уверены, что хотите завершить текущий день?</value>
+  </data>
+  <data name="EndDayTitle" xml:space="preserve">
+    <value>Завершить день?</value>
+  </data>
+  <data name="ExitText" xml:space="preserve">
+    <value>Вы уверены, что хотите закрыть приложение?</value>
+  </data>
+  <data name="ExitTitle" xml:space="preserve">
+    <value>Попытка выхода!</value>
+  </data>
+  <data name="FebruaryText" xml:space="preserve">
+    <value>Февраль</value>
+  </data>
+  <data name="FridayShortText" xml:space="preserve">
+    <value>Пт</value>
+  </data>
+  <data name="FridayText" xml:space="preserve">
+    <value>Пятница</value>
+  </data>
+  <data name="HalfWorkText" xml:space="preserve">
+    <value>Вы преодолели экватор рабочего дня. Осталась ровно половина💪</value>
+  </data>
+  <data name="HalfWorkTitle" xml:space="preserve">
+    <value>Половина пройдена!</value>
+  </data>
+  <data name="HistoryButton" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="HistorySuccessClearText" xml:space="preserve">
+    <value>История успешно очищена</value>
+  </data>
+  <data name="HistoryText" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="JanuaryText" xml:space="preserve">
+    <value>Январь</value>
+  </data>
+  <data name="JulyText" xml:space="preserve">
+    <value>Июль</value>
+  </data>
+  <data name="JuneText" xml:space="preserve">
+    <value>Июнь</value>
+  </data>
+  <data name="LanguageText" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="LightThemeButton" xml:space="preserve">
+    <value>Светлая</value>
+  </data>
+  <data name="MainHeaderText" xml:space="preserve">
+    <value>Учёт рабочего времени</value>
+  </data>
+  <data name="MarchText" xml:space="preserve">
+    <value>Март</value>
+  </data>
+  <data name="MayText" xml:space="preserve">
+    <value>Май</value>
+  </data>
+  <data name="MessageToSupport" xml:space="preserve">
+    <value>Сообщение в поддержку</value>
+  </data>
+  <data name="MondayShortText" xml:space="preserve">
+    <value>Пн</value>
+  </data>
+  <data name="MondayText" xml:space="preserve">
+    <value>Понедельник</value>
+  </data>
+  <data name="NoExitText" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="NoText" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="NotWorkingDayAction" xml:space="preserve">
+    <value>Хорошо, так и сделаю</value>
+  </data>
+  <data name="NotWorkingDayText" xml:space="preserve">
+    <value>Увы, сегодня выходной, поэтому добавить в учёт новый рабочий день не получится. Если у вас возникла необходимость добавить новый рабочий день, то перейдите в "Рабочие дни" раздела настроек и активируйте нужный день</value>
+  </data>
+  <data name="NotWorkingDayTitle" xml:space="preserve">
+    <value>Нерабочий день!</value>
+  </data>
+  <data name="NovemberText" xml:space="preserve">
+    <value>Ноябрь</value>
+  </data>
+  <data name="OctoberText" xml:space="preserve">
+    <value>Октябрь</value>
+  </data>
+  <data name="OkText" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="OverworkText" xml:space="preserve">
+    <value>Переработка:</value>
+  </data>
+  <data name="RemainedAll" xml:space="preserve">
+    <value>Осталось всего:</value>
+  </data>
+  <data name="RemainedAllText" xml:space="preserve">
+    <value>Это время, которое осталось отработать с учётом рабочей нормы текущего дня, а также с учётом всех переработок и недоработок, информация о которых хранится в истории приложения</value>
+  </data>
+  <data name="RemainedAllTitle" xml:space="preserve">
+    <value>Осталось всего</value>
+  </data>
+  <data name="RemainedCurrent" xml:space="preserve">
+    <value>Осталось текущее:</value>
+  </data>
+  <data name="RemainedCurrentText" xml:space="preserve">
+    <value>Это время, которое осталось отработать с учётом рабочей нормы текущего дня</value>
+  </data>
+  <data name="RemainedCurrentTitle" xml:space="preserve">
+    <value>Осталось текущее</value>
+  </data>
+  <data name="SaturdayShortText" xml:space="preserve">
+    <value>Сб</value>
+  </data>
+  <data name="SaturdayText" xml:space="preserve">
+    <value>Суббота</value>
+  </data>
+  <data name="SaveDayButton" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="SelectAction" xml:space="preserve">
+    <value>Выберите действие</value>
+  </data>
+  <data name="SelectedDayText" xml:space="preserve">
+    <value>Выбранный день:</value>
+  </data>
+  <data name="SeptemberText" xml:space="preserve">
+    <value>Сентябрь</value>
+  </data>
+  <data name="SettingsButton" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SettingsText" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SundayShortText" xml:space="preserve">
+    <value>Вс</value>
+  </data>
+  <data name="SundayText" xml:space="preserve">
+    <value>Воскресенье</value>
+  </data>
+  <data name="SupportButton" xml:space="preserve">
+    <value>Поддержка</value>
+  </data>
+  <data name="ThemeText" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="ThursdayShortText" xml:space="preserve">
+    <value>Чт</value>
+  </data>
+  <data name="ThursdayText" xml:space="preserve">
+    <value>Четверг</value>
+  </data>
+  <data name="TimeAccounting" xml:space="preserve">
+    <value>Учёт времени</value>
+  </data>
+  <data name="TimePickerText" xml:space="preserve">
+    <value>Элементы для выбора времени устанавливают норму рабочего времени, т.е. количество рабочих часов</value>
+  </data>
+  <data name="TuesdayShortText" xml:space="preserve">
+    <value>Вт</value>
+  </data>
+  <data name="TuesdayText" xml:space="preserve">
+    <value>Вторник</value>
+  </data>
+  <data name="WeaknessesText" xml:space="preserve">
+    <value>Недоработка:</value>
+  </data>
+  <data name="WednesdayShortText" xml:space="preserve">
+    <value>Ср</value>
+  </data>
+  <data name="WednesdayText" xml:space="preserve">
+    <value>Среда</value>
+  </data>
+  <data name="WeekdaysButton" xml:space="preserve">
+    <value>Рабочие дни</value>
+  </data>
+  <data name="WeekdaysText" xml:space="preserve">
+    <value>Рабочие дни</value>
+  </data>
+  <data name="WeekdayText" xml:space="preserve">
+    <value>Рабочий</value>
+  </data>
+  <data name="WeekendAlertText" xml:space="preserve">
+    <value>Вы уверены, что хотите выйти на работу в выходной? Отработанное сегодня время будет отражено в качестве переработки</value>
+  </data>
+  <data name="WeekendAlertTitle" xml:space="preserve">
+    <value>Нерабочий день!</value>
+  </data>
+  <data name="WeekendText" xml:space="preserve">
+    <value>Выходной</value>
+  </data>
+  <data name="WorkArrivedButton" xml:space="preserve">
+    <value>Прибыл(-а) на работу</value>
+  </data>
+  <data name="WorkLeaveButton" xml:space="preserve">
+    <value>Ушёл(-а) с работы</value>
+  </data>
+  <data name="WorkText" xml:space="preserve">
+    <value>Работа: </value>
+  </data>
+  <data name="YesClearHistoryText" xml:space="preserve">
+    <value>Да, очистить</value>
+  </data>
+  <data name="YesDayIsOverText" xml:space="preserve">
+    <value>Спасибо</value>
+  </data>
+  <data name="YesDeleteBreakText" xml:space="preserve">
+    <value>Да, удалить</value>
+  </data>
+  <data name="YesDeleteDayText" xml:space="preserve">
+    <value>Да, удалить</value>
+  </data>
+  <data name="YesEndDayText" xml:space="preserve">
+    <value>Да, завершить</value>
+  </data>
+  <data name="YesExitText" xml:space="preserve">
+    <value>Да, закрыть</value>
+  </data>
+  <data name="YesHalfWorkText" xml:space="preserve">
+    <value>Отлично</value>
+  </data>
+  <data name="YesWeekendAlertText" xml:space="preserve">
+    <value>Да, выйти</value>
+  </data>
+</root>

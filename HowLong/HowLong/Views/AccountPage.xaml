@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<reactive:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:reactive="clr-namespace:HowLong.Extensions"
+             xmlns:localvm="clr-namespace:HowLong.ViewModels"
+             xmlns:extensions="clr-namespace:HowLong.Extensions;assembly=HowLong"
+             xmlns:templates="clr-namespace:HowLong.Templates"
+             x:TypeArguments="localvm:AccountViewModel"
+             x:Class="HowLong.Views.AccountPage"
+             BackgroundColor="{DynamicResource PrimaryLightColor}">
+    <NavigationPage.TitleView>
+        <extensions:BaseTitleView/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <RelativeLayout x:Name="MainRlt"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+            <Grid RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                  RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  RowSpacing="0"
+                  ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"
+                             Padding="0,15,0,6"
+                             Grid.Column="0"
+                             Grid.Row="0"
+                             Spacing="15">
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Start"
+                                 HorizontalOptions="FillAndExpand">
+                    <reactive:LightLabel HorizontalOptions="CenterAndExpand"
+                                 FontSize="Medium"
+                                         Margin="15,0,15,0">
+                        <reactive:LightLabel.FormattedText>
+                            <FormattedString>
+                                <Span x:Name="DateTitleSpn"
+                                      TextColor="{StaticResource PrimaryBlueColor}"/>
+                                <Span x:Name="DateSpn"
+                                      TextColor="{DynamicResource PrimaryDarkColor}"/>
+                                <Span Text=", "
+                                      TextColor="{DynamicResource PrimaryDarkColor}"/>
+                                <Span x:Name="DaySpn"
+                                      TextColor="{DynamicResource PrimaryDarkColor}"/>
+                            </FormattedString>
+                        </reactive:LightLabel.FormattedText>
+                    </reactive:LightLabel>
+                        <reactive:LightButton x:Name="AddDinnerBtn"
+                                              Margin="0,0,6,0"
+                                              HorizontalOptions="EndAndExpand"
+                                              VerticalOptions="StartAndExpand"
+                                              HeightRequest="28"
+                                              WidthRequest="28"
+                                              CornerRadius="14"
+                                              BackgroundColor="Green"
+                                              TextColor="{DynamicResource PrimaryLightColor}"
+                                              Text="+"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                 VerticalOptions="Start"
+                                 Padding="15,0,15,0"
+                                 Orientation="Horizontal">
+                        <reactive:LightButton x:Name="StartWorkBtn"
+                                              HorizontalOptions="Center"
+                                              VerticalOptions="Center"
+                                              HeightRequest="45"
+                                              CornerRadius="6"
+                                              WidthRequest="160"
+                                              BackgroundColor="{StaticResource AgreeColor}"
+                                              TextColor="{DynamicResource PrimaryLightColor}"
+                                              Text="{extensions:Translate WorkArrivedButton}"/>
+                        <TimePicker Format="T"
+                                    x:Name="StartWorkTmPck"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    </StackLayout>
+                </StackLayout>
+                <RelativeLayout Grid.Row="1"
+                                Grid.Column="0"
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                    <ListView x:Name="MainLst"
+                              CachingStrategy="RecycleElementAndDataTemplate"
+                              SeparatorVisibility="Default"
+                              SeparatorColor="{StaticResource ChatColor}"
+                              HasUnevenRows="True"
+                              RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                              RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
+                              HorizontalOptions="FillAndExpand"
+                              VerticalOptions="FillAndExpand">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <templates:BreakCard/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <reactive:ShadowView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                                         RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                                         RelativeLayout.HeightConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.1, Constant=0}"
+                                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"/>
+                </RelativeLayout>
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="End"
+                             Grid.Column="0"
+                             Grid.Row="2"
+                             Padding="15,6,15,12"
+                             Spacing="12"
+                             x:Name="EndMainStck">
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                 VerticalOptions="Center"
+                                 Spacing="12"
+                                 Orientation="Horizontal"
+                                 x:Name="EndStck">
+                        <reactive:LightButton x:Name="EndWorkBtn"
+                                              HorizontalOptions="Center"
+                                              VerticalOptions="Center"
+                                              HeightRequest="45"
+                                              CornerRadius="6"
+                                              WidthRequest="160"
+                                              BackgroundColor="{StaticResource AgreeColor}"
+                                              TextColor="{DynamicResource PrimaryLightColor}"
+                                              Text="{extensions:Translate WorkLeaveButton}"/>
+                        <TimePicker Format="T"
+                                    x:Name="EndWorkTmPck"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    </StackLayout>
+                    <reactive:LightButton x:Name="SaveBtn"
+                                          HorizontalOptions="CenterAndExpand"
+                                          VerticalOptions="Center"
+                                          HeightRequest="45"
+                                          CornerRadius="6"
+                                          WidthRequest="200"
+                                          BackgroundColor="{StaticResource PrimaryBlueColor}"
+                                          TextColor="{DynamicResource PrimaryLightColor}"/>
+                </StackLayout>
+                <Grid HorizontalOptions="FillAndExpand"
+                      VerticalOptions="EndAndExpand"
+                      BackgroundColor="{StaticResource VehicleBlueColor}"
+                      ColumnSpacing="2"
+                      Grid.Column="0"
+                      Grid.Row="3"
+                      x:Name="TimerGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Spacing="12"
+                                 Padding="12"
+                                 HorizontalOptions="CenterAndExpand"
+                                 VerticalOptions="CenterAndExpand"
+                                 Grid.Row="0"
+                                 Grid.Column="0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="CurrentGstr"/>
+                        </StackLayout.GestureRecognizers>
+                        <reactive:LightLabel Text="{extensions:Translate RemainedCurrent}"
+                                             HorizontalOptions="CenterAndExpand"
+                                             FontSize="Small"
+                                             TextColor="White"/>
+                        <reactive:RegularLabel x:Name="CurrentOverWorkLbl"
+                                               HorizontalOptions="CenterAndExpand"
+                                               FontSize="16"
+                                               TextColor="White"/>
+                    </StackLayout>
+                    <StackLayout Spacing="12"
+                                 Padding="12"
+                                 HorizontalOptions="CenterAndExpand"
+                                 VerticalOptions="CenterAndExpand"
+                                 Grid.Row="0"
+                                 Grid.Column="1">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="AllGstr"/>
+                        </StackLayout.GestureRecognizers>
+                        <reactive:LightLabel Text="{extensions:Translate RemainedAll}"
+                                             HorizontalOptions="CenterAndExpand"
+                                             FontSize="Small"
+                                             TextColor="White"/>
+                        <reactive:RegularLabel x:Name="TotalOverWorkLbl"
+                                               HorizontalOptions="CenterAndExpand"
+                                               FontSize="16"
+                                               TextColor="White"/>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+            <StackLayout x:Name="LoadingStck"
+                         BackgroundColor="{DynamicResource PrimaryLightColor}"
+                         RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                         RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"/>
+            <ActivityIndicator x:Name="LoadingIndic"
+                               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-35}"
+                               RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-35}"
+                               RelativeLayout.WidthConstraint="70"
+                               RelativeLayout.HeightConstraint="70"
+                               Color="{StaticResource PrimaryBlueColor}"/>
+            <reactive:ShadowView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                                 RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                                 RelativeLayout.HeightConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.1, Constant=0}"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"/>
+        </RelativeLayout>
+    </ContentPage.Content>
+</reactive:ContentPageBase>

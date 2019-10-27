@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <style name="Theme.Splash" parent ="android:Theme">
+    <item name="android:windowBackground">@xml/spalsh</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowFullscreen">true</item>
+    <item name="windowActionBar">false</item>
+  </style>
+
+  <style name="MainTheme" parent="MainTheme.Base">
+  </style>
+  <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionBar">false</item>
+    <item name="colorPrimary">#000000</item>
+    <item name="colorPrimaryDark">#2F2F2F</item>
+    <item name="colorAccent">#4688B5</item>
+    <item name="windowActionModeOverlay">true</item>
+    <item name="android:colorActivatedHighlight">#4688B5</item>
+    <item name="textAllCaps">false</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+  </style>
+
+  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+    <item name="colorAccent">#4688B5</item>
+  </style>
+
+  <style name="TransparentBackground" parent="android:Theme.Light">
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowIsFloating">true</item>
+    <item name="android:backgroundDimEnabled">false</item>
+  </style>
+</resources>

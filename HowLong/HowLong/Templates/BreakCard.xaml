@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rxui:ReactiveViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:extensions="clr-namespace:HowLong.Extensions;assembly=HowLong"
+             x:TypeArguments="models:Break"
+             xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+             xmlns:models="clr-namespace:HowLong.Models"
+             xmlns:reactive="clr-namespace:HowLong.Extensions"
+             x:Class="HowLong.Templates.BreakCard">
+    <StackLayout HorizontalOptions="FillAndExpand"
+                 VerticalOptions="Start"
+                 BackgroundColor="{DynamicResource PrimaryDarkColor}">
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="Start"
+                     Spacing="12"
+                     Padding="15,12"
+                     Orientation="Horizontal">
+            <reactive:LightButton x:Name="StartDinnerBtn"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center"
+                                  HeightRequest="45"
+                                  CornerRadius="6"
+                                  WidthRequest="140"
+                                  BackgroundColor="{StaticResource ChatColor}"
+                                  TextColor="{DynamicResource PrimaryDarkColor}"
+                                  Text="{extensions:Translate BreakStartButton}"/>
+            <TimePicker Format="T"
+                        x:Name="StartDinnerTmPck"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TextColor="{DynamicResource PrimaryLightColor}"/>
+        </StackLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="Start"
+                     Spacing="12"
+                     Padding="15,12"
+                     Orientation="Horizontal">
+            <reactive:LightButton x:Name="EndDinnerBtn"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center"
+                                  HeightRequest="45"
+                                  CornerRadius="6"
+                                  WidthRequest="140"
+                                  BackgroundColor="{StaticResource ChatColor}"
+                                  TextColor="{DynamicResource PrimaryDarkColor}"
+                                  Text="{extensions:Translate BreakEndButton}"/>
+            <TimePicker Format="T"
+                        x:Name="EndDinnerTmPck"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TextColor="{DynamicResource PrimaryLightColor}"/>
+        </StackLayout>
+    </StackLayout>
+</rxui:ReactiveViewCell>

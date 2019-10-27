@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<reactive:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:device="clr-namespace:HowLong.Theme"  
+             xmlns:extensions="clr-namespace:HowLong.Extensions;assembly=HowLong"
+             x:Class="HowLong.Views.WorkDaysPage"
+             xmlns:reactive="clr-namespace:HowLong.Extensions"
+             xmlns:localvm="clr-namespace:HowLong.ViewModels"
+             x:TypeArguments="localvm:WorkDaysViewModel"
+             BackgroundColor="{DynamicResource PrimaryLightColor}">
+    <NavigationPage.TitleView>
+        <extensions:BaseTitleView/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <RelativeLayout x:Name="MainRlt"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+            <ScrollView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                      RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Padding="18,15">
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Start"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="6">
+                        <reactive:LightLabel Text="{extensions:Translate WeekdaysText}"
+                                             VerticalOptions="Center"
+                                             HorizontalOptions="CenterAndExpand"
+                                             FontSize="Title"
+                                             TextColor="{StaticResource PrimaryBlueColor}"/>
+                        <reactive:RegularButton Text="i"
+                                                x:Name="InfoBtn"
+                                                FontSize="13"
+                                                TextColor="{StaticResource PrimaryLightColor}"
+                                                BackgroundColor="{StaticResource PrimaryBlueColor}"
+                                                CornerRadius="10"
+                                                WidthRequest="19"
+                                                HeightRequest="19"
+                                                VerticalOptions="Start"
+                                                HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                                 Margin="{x:Static device:DeviceSize.Margin}"
+                                 Spacing="6"
+                                 Orientation="Horizontal">
+                    <CheckBox x:Name="MondayCbx"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Start"
+                              Color="{StaticResource PrimaryBlueColor}"/>
+                    <reactive:LightLabel VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         FontSize="Small"
+                                         Text="{extensions:Translate MondayText}"
+                                         TextColor="{StaticResource PrimaryBlueColor}"/>
+                    <TimePicker Format="T"
+                                Margin="15,0,0,0"
+                                x:Name="MondayStartTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <reactive:LightLabel  VerticalOptions="Center"
+                                          HorizontalOptions="Start"
+                                          FontSize="Medium"
+                                          Text=" - "
+                                          TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <TimePicker Format="T"
+                                x:Name="MondayEndTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                             Margin="{x:Static device:DeviceSize.Margin}"
+                             Spacing="6"
+                             Orientation="Horizontal">
+                    <CheckBox x:Name="TuesdayCbx"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Start"
+                              Color="{StaticResource PrimaryBlueColor}"/>
+                    <reactive:LightLabel VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         FontSize="Small"
+                                         Text="{extensions:Translate TuesdayText}"
+                                         TextColor="{StaticResource PrimaryBlueColor}"/>
+                    <TimePicker Format="T"
+                                Margin="15,0,0,0"
+                                x:Name="TuesdayStartTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <reactive:LightLabel VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         FontSize="Medium"
+                                         Text=" - "
+                                         TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <TimePicker Format="T"
+                                x:Name="TuesdayEndTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                             Margin="{x:Static device:DeviceSize.Margin}"
+                             Spacing="6"
+                             Orientation="Horizontal">
+                    <CheckBox x:Name="WednesdayCbx"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Start"
+                              Color="{StaticResource PrimaryBlueColor}"/>
+                    <reactive:LightLabel VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         FontSize="Small"
+                                         Text="{extensions:Translate WednesdayText}"
+                                         TextColor="{StaticResource PrimaryBlueColor}"/>
+                    <TimePicker Format="T"
+                                Margin="15,0,0,0"
+                                x:Name="WednesdayStartTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <reactive:LightLabel VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         FontSize="Medium"
+                                         Text=" - "
+                                         TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <TimePicker Format="T"
+                                x:Name="WednesdayEndTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                             Margin="{x:Static device:DeviceSize.Margin}"
+                             Spacing="6"
+                             Orientation="Horizontal">
+                    <CheckBox x:Name="ThursdayCbx"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Start"
+                              Color="{StaticResource PrimaryBlueColor}"/>
+                    <reactive:LightLabel VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         FontSize="Small"
+                                         Text="{extensions:Translate ThursdayText}"
+                                         TextColor="{StaticResource PrimaryBlueColor}"/>
+                    <TimePicker Format="T"
+                                Margin="15,0,0,0"
+                                x:Name="ThursdayStartTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <reactive:LightLabel VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         FontSize="Medium"
+                                         Text=" - "
+                                         TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <TimePicker Format="T"
+                                x:Name="ThursdayEndTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                             Margin="{x:Static device:DeviceSize.Margin}"
+                             Spacing="6"
+                             Orientation="Horizontal">
+                    <CheckBox x:Name="FridayCbx"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Start"
+                              Color="{StaticResource PrimaryBlueColor}"/>
+                    <reactive:LightLabel 
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Start"
+                                 FontSize="Small"
+                                 Text="{extensions:Translate FridayText}"
+                                 TextColor="{StaticResource PrimaryBlueColor}"/>
+                    <TimePicker Format="T"
+                                Margin="15,0,0,0"
+                                x:Name="FridayStartTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <reactive:LightLabel VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         FontSize="Medium"
+                                         Text=" - "
+                                         TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <TimePicker Format="T"
+                                x:Name="FridayEndTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                             Margin="{x:Static device:DeviceSize.Margin}"
+                             Spacing="6"
+                             Orientation="Horizontal">
+                    <CheckBox x:Name="SaturdayCbx"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Start"
+                              Color="{StaticResource PrimaryBlueColor}"/>
+                    <reactive:LightLabel VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         FontSize="Small"
+                                         Text="{extensions:Translate SaturdayText}"
+                                         TextColor="{StaticResource PrimaryBlueColor}"/>
+                    <TimePicker Format="T"
+                                Margin="15,0,0,0"
+                                x:Name="SaturdayStartTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <reactive:LightLabel VerticalOptions="Center"
+                                         HorizontalOptions="Start"
+                                         FontSize="Medium"
+                                         Text=" - "
+                                         TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    <TimePicker Format="T"
+                                x:Name="SaturdayEndTmPck"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource PrimaryDarkColor}"/>
+                   
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                             Margin="{x:Static device:DeviceSize.Margin}"
+                             Spacing="6"
+                             Orientation="Horizontal">
+                        <CheckBox x:Name="SundayCbx"
+                                  VerticalOptions="Center"
+                                  HorizontalOptions="Start"
+                                  Color="{StaticResource PrimaryBlueColor}"/>
+                        <reactive:LightLabel VerticalOptions="Center"
+                                             HorizontalOptions="Start"
+                                             FontSize="Small"
+                                             Text="{extensions:Translate SundayText}"
+                                             TextColor="{StaticResource PrimaryBlueColor}"/>
+                        <TimePicker Format="T"
+                                    Margin="15,0,0,0"
+                                    x:Name="SundayStartTmPck"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    TextColor="{DynamicResource PrimaryDarkColor}"/>
+                        <reactive:LightLabel VerticalOptions="Center"
+                                             HorizontalOptions="Start"
+                                             FontSize="Medium"
+                                             Text=" - "
+                                             TextColor="{DynamicResource PrimaryDarkColor}"/>
+                        <TimePicker Format="T"
+                                    x:Name="SundayEndTmPck"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    TextColor="{DynamicResource PrimaryDarkColor}"/>
+                    </StackLayout>
+            </StackLayout>
+            </ScrollView>
+            <StackLayout x:Name="LoadingStck"
+                         BackgroundColor="{DynamicResource PrimaryLightColor}"
+                         RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                         RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"/>
+            <ActivityIndicator x:Name="LoadingIndic"
+                               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-35}"
+                               RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-35}"
+                               RelativeLayout.WidthConstraint="70"
+                               RelativeLayout.HeightConstraint="70"
+                               Color="{StaticResource PrimaryBlueColor}"/>
+            <reactive:ShadowView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                                 RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                                 RelativeLayout.HeightConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.1, Constant=0}"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"/>
+        </RelativeLayout>
+    </ContentPage.Content>
+</reactive:ContentPageBase>

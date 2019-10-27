@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<reactive:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:localvm="clr-namespace:HowLong.ViewModels"
+             mc:Ignorable="d"
+             xmlns:extensions="clr-namespace:HowLong.Extensions;assembly=HowLong"
+             Title="HowLong"
+             xmlns:device="clr-namespace:HowLong.Theme"  
+             xmlns:reactive="clr-namespace:HowLong.Extensions"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:TypeArguments="localvm:MainViewModel"
+             BackgroundColor="{DynamicResource PrimaryLightColor}"
+             x:Class="HowLong.Views.MainPage">
+    <ContentPage.Content>
+        <RelativeLayout x:Name="MainRlt"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+            <ScrollView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                        RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Padding="15">
+                    <reactive:LightLabel x:Name="HeaderLbl"
+                                         Text="{extensions:Translate MainHeaderText}"
+                                         VerticalOptions="Start"
+                                         HorizontalOptions="CenterAndExpand"
+                                         FontSize="Title"
+                                         TextColor="{StaticResource PrimaryBlueColor}"/>
+                    <forms:AnimationView x:Name="AnimView"
+	                                     Animation="time.json" 
+	                                     Loop="True" 
+                                         Speed=".17"
+	                                     IsPlaying="True"
+                                         HeightRequest="110"
+                                         WidthRequest="220"
+	                                     HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="StartAndExpand"/>
+                    <reactive:LightButton x:Name="CurrentBtn"
+                                          HorizontalOptions="CenterAndExpand"
+                                          VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                                          Margin="{x:Static device:DeviceSize.Margin}"
+                                          HeightRequest="45"
+                                          CornerRadius="6"
+                                          WidthRequest="140"
+                                          BackgroundColor="{StaticResource PrimaryBlueColor}"
+                                          TextColor="{DynamicResource PrimaryLightColor}"
+                                          Text="{extensions:Translate CurrentDayButton}"/>
+                    <reactive:LightButton x:Name="HistoryBtn"
+                                          HorizontalOptions="CenterAndExpand"
+                                          VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                                          Margin="{x:Static device:DeviceSize.Margin}"
+                                          HeightRequest="45"
+                                          CornerRadius="6"
+                                          WidthRequest="140"
+                                          BackgroundColor="{StaticResource PrimaryBlueColor}"
+                                          TextColor="{DynamicResource PrimaryLightColor}"
+                                          Text="{extensions:Translate HistoryButton}"/>
+                    <reactive:LightButton x:Name="SettingsBtn"
+                                          HorizontalOptions="CenterAndExpand"
+                                          VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                                          Margin="{x:Static device:DeviceSize.Margin}"
+                                          WidthRequest="140"
+                                          HeightRequest="45"
+                                          CornerRadius="6"
+                                          BackgroundColor="{StaticResource PrimaryBlueColor}"
+                                          TextColor="{DynamicResource PrimaryLightColor}"
+                                          Text="{extensions:Translate SettingsButton}"/>
+                    <reactive:LightLabel x:Name="CurrentDateLbl"
+                                         VerticalOptions="EndAndExpand"
+                                         HorizontalOptions="EndAndExpand"
+                                         FontSize="Medium"
+                                         TextColor="{DynamicResource PrimaryDarkColor}"/>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout x:Name="LoadingStck"
+                         BackgroundColor="{DynamicResource PrimaryLightColor}"
+                         RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                         RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"/>
+            <ActivityIndicator x:Name="LoadingIndic"
+                               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-35}"
+                               RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-35}"
+                               RelativeLayout.WidthConstraint="70"
+                               RelativeLayout.HeightConstraint="70"
+                               Color="{StaticResource PrimaryBlueColor}"/>
+            <reactive:ShadowView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                                 RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                                 RelativeLayout.HeightConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.1, Constant=0}"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"/>
+        </RelativeLayout>
+    </ContentPage.Content>
+    </reactive:ContentPageBase>

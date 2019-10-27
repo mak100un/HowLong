@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rxui:ReactiveViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:TypeArguments="models:HistoryAccount"
+             xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+             xmlns:models="clr-namespace:HowLong.Models"
+             xmlns:extensions="clr-namespace:HowLong.Extensions;assembly=HowLong"
+             xmlns:reactive="clr-namespace:HowLong.Extensions"
+             x:Class="HowLong.Templates.AccountCard">
+    <StackLayout HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start"
+            Padding="15, 12"
+            Spacing="6">
+        <reactive:LightLabel HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             FontSize="Medium"
+                             x:Name="DayLbl"
+                             TextColor="{DynamicResource PrimaryDarkColor}"/>
+        <StackLayout Orientation="Horizontal" 
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="Start"
+                     Spacing="6">
+            <reactive:LightLabel HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 FontSize="Medium"
+                                 Text="{extensions:Translate WorkText}" 
+                                 TextColor="{StaticResource PrimaryBlueColor}"/>
+            <reactive:RegularLabel HorizontalOptions="Start"
+                                   VerticalOptions="Center"
+                                   FontSize="Medium"
+                                   TextColor="{StaticResource PrimaryBlueColor}">
+                <reactive:RegularLabel.FormattedText>
+                    <FormattedString>
+                        <Span x:Name="StartWorkSpn"/>
+                        <Span Text=" - "/>
+                        <Span x:Name="EndWorkSpn"/>
+                    </FormattedString>
+                </reactive:RegularLabel.FormattedText>
+            </reactive:RegularLabel>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" 
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="Start"
+                     Spacing="6"
+                     x:Name="DinnerStck">
+            <reactive:LightLabel HorizontalOptions="Start"
+                                 x:Name="BreakLbl"
+                                 VerticalOptions="Center"
+                                 FontSize="Medium"
+                                 TextColor="{StaticResource PrimaryBlueColor}"/>
+            <reactive:RegularLabel HorizontalOptions="Start"
+                                   VerticalOptions="Center"
+                                   FontSize="Medium"
+                                   LineBreakMode="CharacterWrap"
+                                   TextColor="{StaticResource PrimaryBlueColor}"
+                                   x:Name="DinnerLbl"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" 
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="Start"
+                     Spacing="6">
+            <reactive:LightLabel HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 FontSize="Medium"
+                                 x:Name="OverWorkTitle"
+                                 TextColor="{StaticResource PrimaryBlueColor}"/>
+            <reactive:RegularLabel HorizontalOptions="Start"
+                                   VerticalOptions="Center"
+                                   FontSize="Medium"
+                                   x:Name="OverWorkLbl"/>
+        </StackLayout>
+    </StackLayout>
+</rxui:ReactiveViewCell>

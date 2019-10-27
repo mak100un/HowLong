@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HowLong.App">
+    <Application.Resources>
+        <Color x:Key="AgreeColor">#00AB00</Color>
+        <Color x:Key="ChatColor">#FF8F00</Color>
+        <Color x:Key="LightBlueColor">#D4E3EE</Color>
+        <Color x:Key="VehicleBlueColor">#4F8EB9</Color>
+        <Color x:Key="PrimaryDarkColor">#2F2F2F</Color>
+        <Color x:Key="PrimaryColor">#424242</Color>
+        <Color x:Key="PrimaryLightColor">#FFFFFF</Color>
+        <Color x:Key="PrimaryBlueColor">#4688B5</Color>
+        <Color x:Key="DarkColor">#000000</Color>
+        <Color x:Key="DisabledColor">#8B8B8B</Color>
+        <Color x:Key="EntryBorderColor">#AAAAAA</Color>
+        <Color x:Key="EntryPlaceholderColor">#9E9E9E</Color>
+        <Color x:Key="CategoryDescriptionColor">#959595</Color>
+        <Color x:Key="AccentColor">#F5244C</Color>
+        <Color x:Key="MenuTextColor">#676767</Color>
+        <Color x:Key="AutoColor">#707070</Color>
+        <Color x:Key="CloseColor">#A8A8A8</Color>
+        <Color x:Key="PrimaryRedColor">#AA0404</Color>
+        <Color x:Key="FilterColor">#EFB630</Color>
+        <Color x:Key="OffersLightColor">#BBBBBB</Color>
+        <Color x:Key="ClassCountTicketsColor">#DEDEDE</Color>
+        <Color x:Key="CancelButtonColor">#AEAEAE</Color>
+        <Color x:Key="LightGrayColor">#F2F2F2</Color>
+        <Color x:Key="DarkGrayColor">#707070</Color>
+        <Color x:Key="TariffsSectionColor">#919191</Color>
+        <Color x:Key="PointDarkColor">#697581</Color>
+    </Application.Resources>
+</Application>

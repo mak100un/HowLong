@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<reactive:ContentPageBase xmlns:reactive="clr-namespace:HowLong.Extensions"
+                          x:TypeArguments="localvm:HistoryViewModel"
+                          xmlns:extensions="clr-namespace:HowLong.Extensions;assembly=HowLong"
+                          xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                          xmlns:localvm="clr-namespace:HowLong.ViewModels"
+                          xmlns:converters="clr-namespace:HowLong.Converters"
+                          xmlns:templates="clr-namespace:HowLong.Templates"
+                          mc:Ignorable="d"
+                          BackgroundColor="{DynamicResource PrimaryLightColor}"
+                          x:Class="HowLong.Views.HistoryPage">
+    <NavigationPage.TitleView>
+        <extensions:BaseTitleView/>
+    </NavigationPage.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TimeAccountHeaderConverter x:Key="TimeAccountHeaderConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <RelativeLayout x:Name="MainRlt"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+            <Grid RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                  RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  RowSpacing="0"
+                  ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListView x:Name="MainLst"
+                          Grid.Row="0"
+                          Grid.Column="0"
+                          CachingStrategy="RetainElement"
+                          SeparatorVisibility="Default"
+                          SeparatorColor="{StaticResource PrimaryBlueColor}"
+                          HasUnevenRows="True"
+                          IsGroupingEnabled="True"
+                          IsPullToRefreshEnabled="True"
+                          RefreshCommand="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}">
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="12,6">
+                                    <reactive:LightLabel HorizontalOptions="StartAndExpand"
+                                                         VerticalOptions="Center"
+                                                         FontSize="Medium"
+                                                         TextColor="{StaticResource PrimaryBlueColor}"
+                                                         Text="{Binding Key, Converter={StaticResource TimeAccountHeaderConverter}}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
+                    <ListView.Header>
+                        <StackLayout HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Start"
+                                     Padding="12">
+                            <reactive:LightLabel HorizontalOptions="Start"
+                                                 VerticalOptions="Center"
+                                                 FontSize="Title"
+                                                 Text="{extensions:Translate HistoryText}"
+                                                 TextColor="{StaticResource VehicleBlueColor}"/>
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <templates:AccountCard/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <StackLayout Padding="6">
+                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                <reactive:LightLabel x:Name = "NoElementsLbl"
+                                                     Text ="{extensions:Translate EmptyHistoryText}"
+                                                     FontSize="Small"
+                                                     VerticalOptions="Start"
+                                                     TextColor="{DynamicResource PrimaryDarkColor}"
+                                                     HorizontalOptions="Start"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ListView.Footer>
+                </ListView>
+                <StackLayout Grid.Row="1"
+                             Grid.Column="0"
+                             Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="EndAndExpand"
+                             Spacing="6"
+                             Padding="15">
+                    <reactive:LightLabel HorizontalOptions="EndAndExpand"
+                                         VerticalOptions="Center"
+                                         FontSize="Medium"
+                                         x:Name="OverWorkTitleLbl"
+                                         TextColor="{StaticResource PrimaryBlueColor}"/>
+                    <reactive:RegularLabel HorizontalOptions="End"
+                                           VerticalOptions="Center"
+                                           FontSize="Medium"
+                                           x:Name="TotalOverWorkLbl"/>
+                </StackLayout>
+            </Grid>
+            <StackLayout x:Name="LoadingStck"
+                         BackgroundColor="{DynamicResource PrimaryLightColor}"
+                         RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                         RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"/>
+            <ActivityIndicator x:Name="LoadingIndic"
+                               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-35}"
+                               RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-35}"
+                               RelativeLayout.WidthConstraint="70"
+                               RelativeLayout.HeightConstraint="70"
+                               Color="{StaticResource PrimaryBlueColor}"/>
+            <reactive:ShadowView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                                 RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                                 RelativeLayout.HeightConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.1, Constant=0}"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"/>
+        </RelativeLayout>
+    </ContentPage.Content>
+    </reactive:ContentPageBase>

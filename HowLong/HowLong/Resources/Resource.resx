@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AprilText" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="AugustText" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="BreakAction" xml:space="preserve">
+    <value>Break</value>
+  </data>
+  <data name="BreakEndButton" xml:space="preserve">
+    <value>End break</value>
+  </data>
+  <data name="BreakStartButton" xml:space="preserve">
+    <value>Start break</value>
+  </data>
+  <data name="BreaksText" xml:space="preserve">
+    <value>Breaks: </value>
+  </data>
+  <data name="BreakText" xml:space="preserve">
+    <value>Break: </value>
+  </data>
+  <data name="CancelAction" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ClearHistoryButton" xml:space="preserve">
+    <value>Clear history</value>
+  </data>
+  <data name="ClearHistoryText" xml:space="preserve">
+    <value>Are you sure you want to clear history?</value>
+  </data>
+  <data name="ClearHistoryTitle" xml:space="preserve">
+    <value>Clear history?</value>
+  </data>
+  <data name="CurrentDayButton" xml:space="preserve">
+    <value>Current day</value>
+  </data>
+  <data name="CurrentDayText" xml:space="preserve">
+    <value>Current day:</value>
+  </data>
+  <data name="CurrentDayTitle" xml:space="preserve">
+    <value>Current day</value>
+  </data>
+  <data name="DarkThemeButton" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="DayEndedAction" xml:space="preserve">
+    <value>Well, I'll do that</value>
+  </data>
+  <data name="DayEndedText" xml:space="preserve">
+    <value>You have worked hard, now you can relax, for example, watching a movie, reading an interesting book or playing sports😉</value>
+  </data>
+  <data name="DayEndedTitle" xml:space="preserve">
+    <value>Day is over!</value>
+  </data>
+  <data name="DayIsOverText" xml:space="preserve">
+    <value>Congratulations, you have successfully fulfilled the working norm of the current day👏</value>
+  </data>
+  <data name="DayIsOverTitle" xml:space="preserve">
+    <value>Working day is over!</value>
+  </data>
+  <data name="DaySuccessDeleteText" xml:space="preserve">
+    <value>Day successfully deleted</value>
+  </data>
+  <data name="DaySuccessEndedText" xml:space="preserve">
+    <value>Day successfully completed</value>
+  </data>
+  <data name="DaySuccessUpdatedText" xml:space="preserve">
+    <value>Day successfully updated</value>
+  </data>
+  <data name="DecemberText" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="DeleteAction" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteBreakText" xml:space="preserve">
+    <value>Are you sure you want to remove this break?</value>
+  </data>
+  <data name="DeleteBreakTitle" xml:space="preserve">
+    <value>Remove the break?</value>
+  </data>
+  <data name="DeleteDayText" xml:space="preserve">
+    <value>Are you sure you want to delete the account day?</value>
+  </data>
+  <data name="DeleteDayTitle" xml:space="preserve">
+    <value>Delete day?</value>
+  </data>
+  <data name="EditAction" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditingTitle" xml:space="preserve">
+    <value>Editing</value>
+  </data>
+  <data name="EmptyHistoryText" xml:space="preserve">
+    <value>History is empty</value>
+  </data>
+  <data name="EndDayButton" xml:space="preserve">
+    <value>End the day</value>
+  </data>
+  <data name="EndDayText" xml:space="preserve">
+    <value>Are you sure you want to complete the current day?</value>
+  </data>
+  <data name="EndDayTitle" xml:space="preserve">
+    <value>End the day?</value>
+  </data>
+  <data name="ExitText" xml:space="preserve">
+    <value>Are you sure you want to close the application?</value>
+  </data>
+  <data name="ExitTitle" xml:space="preserve">
+    <value>Attempt to exit!</value>
+  </data>
+  <data name="FebruaryText" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="FridayShortText" xml:space="preserve">
+    <value>Fri</value>
+  </data>
+  <data name="FridayText" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="HalfWorkText" xml:space="preserve">
+    <value>You have crossed the equator of the working day. There's only half of it left💪</value>
+  </data>
+  <data name="HalfWorkTitle" xml:space="preserve">
+    <value>Half done!</value>
+  </data>
+  <data name="HistoryButton" xml:space="preserve">
+    <value>History </value>
+  </data>
+  <data name="HistorySuccessClearText" xml:space="preserve">
+    <value>History successfully cleared</value>
+  </data>
+  <data name="HistoryText" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="JanuaryText" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="JulyText" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="JuneText" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="LanguageText" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LightThemeButton" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="MainHeaderText" xml:space="preserve">
+    <value>Accounting of working hours</value>
+  </data>
+  <data name="MarchText" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="MayText" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="MessageToSupport" xml:space="preserve">
+    <value>Message to support</value>
+  </data>
+  <data name="MondayShortText" xml:space="preserve">
+    <value>Mon</value>
+  </data>
+  <data name="MondayText" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="NoExitText" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoText" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NotWorkingDayAction" xml:space="preserve">
+    <value>Well, I'll do that</value>
+  </data>
+  <data name="NotWorkingDayText" xml:space="preserve">
+    <value>Alas, today is a day off, so add to the account a new working day will not work. If you need to add a new working day, go to the "Working days" section of the settings and activate the desired day</value>
+  </data>
+  <data name="NotWorkingDayTitle" xml:space="preserve">
+    <value>Day off!</value>
+  </data>
+  <data name="NovemberText" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="OctoberText" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="OkText" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="OverworkText" xml:space="preserve">
+    <value>Overwork:</value>
+  </data>
+  <data name="RemainedAll" xml:space="preserve">
+    <value>Remain only:</value>
+  </data>
+  <data name="RemainedAllText" xml:space="preserve">
+    <value>This is the time left to work out taking into account the working rate of the current day, as well as taking into account all the overwork and shortcomings, information about which is stored in the history of the application</value>
+  </data>
+  <data name="RemainedAllTitle" xml:space="preserve">
+    <value>Remain only</value>
+  </data>
+  <data name="RemainedCurrent" xml:space="preserve">
+    <value>Remained current:</value>
+  </data>
+  <data name="RemainedCurrentText" xml:space="preserve">
+    <value>This is the time that is left to work out taking into account the working rate of the current day</value>
+  </data>
+  <data name="RemainedCurrentTitle" xml:space="preserve">
+    <value>Remained current</value>
+  </data>
+  <data name="SaturdayShortText" xml:space="preserve">
+    <value>Sat</value>
+  </data>
+  <data name="SaturdayText" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="SaveDayButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SelectAction" xml:space="preserve">
+    <value>Select the action</value>
+  </data>
+  <data name="SelectedDayText" xml:space="preserve">
+    <value>Selected day:</value>
+  </data>
+  <data name="SeptemberText" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="SettingsButton" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsText" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SundayShortText" xml:space="preserve">
+    <value>Sun</value>
+  </data>
+  <data name="SundayText" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="SupportButton" xml:space="preserve">
+    <value>Support </value>
+  </data>
+  <data name="ThemeText" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="ThursdayShortText" xml:space="preserve">
+    <value>Thurs</value>
+  </data>
+  <data name="ThursdayText" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="TimeAccounting" xml:space="preserve">
+    <value>Time accounting</value>
+  </data>
+  <data name="TimePickerText" xml:space="preserve">
+    <value>The time selection elements set the working time rate, i.e. the number of working hours</value>
+  </data>
+  <data name="TuesdayShortText" xml:space="preserve">
+    <value>Tues</value>
+  </data>
+  <data name="TuesdayText" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="WeaknessesText" xml:space="preserve">
+    <value>Weaknesses:</value>
+  </data>
+  <data name="WednesdayShortText" xml:space="preserve">
+    <value>Wed</value>
+  </data>
+  <data name="WednesdayText" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="WeekdaysButton" xml:space="preserve">
+    <value>Weekdays</value>
+  </data>
+  <data name="WeekdaysText" xml:space="preserve">
+    <value>Weekdays</value>
+  </data>
+  <data name="WeekdayText" xml:space="preserve">
+    <value>Weekday</value>
+  </data>
+  <data name="WeekendAlertText" xml:space="preserve">
+    <value>Are you sure you want to go to work on the weekend? The time worked today will be reflected in the quality of processing</value>
+  </data>
+  <data name="WeekendAlertTitle" xml:space="preserve">
+    <value>Day off!</value>
+  </data>
+  <data name="WeekendText" xml:space="preserve">
+    <value>Weekend</value>
+  </data>
+  <data name="WorkArrivedButton" xml:space="preserve">
+    <value>Arrived at work</value>
+  </data>
+  <data name="WorkLeaveButton" xml:space="preserve">
+    <value>Leave work</value>
+  </data>
+  <data name="WorkText" xml:space="preserve">
+    <value>Work: </value>
+  </data>
+  <data name="YesClearHistoryText" xml:space="preserve">
+    <value>Yes, clear</value>
+  </data>
+  <data name="YesDayIsOverText" xml:space="preserve">
+    <value>Thanks</value>
+  </data>
+  <data name="YesDeleteBreakText" xml:space="preserve">
+    <value>Yes, remove</value>
+  </data>
+  <data name="YesDeleteDayText" xml:space="preserve">
+    <value>Yes, delete</value>
+  </data>
+  <data name="YesEndDayText" xml:space="preserve">
+    <value>Yes, complete</value>
+  </data>
+  <data name="YesExitText" xml:space="preserve">
+    <value>Yes, close</value>
+  </data>
+  <data name="YesHalfWorkText" xml:space="preserve">
+    <value>Great</value>
+  </data>
+  <data name="YesWeekendAlertText" xml:space="preserve">
+    <value>Yes, go to work</value>
+  </data>
+</root>

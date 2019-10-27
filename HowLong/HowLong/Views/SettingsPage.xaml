@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<reactive:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:device="clr-namespace:HowLong.Theme"             
+             x:Class="HowLong.Views.SettingsPage"
+             xmlns:extensions="clr-namespace:HowLong.Extensions;assembly=HowLong"
+             xmlns:reactive="clr-namespace:HowLong.Extensions"
+             xmlns:localvm="clr-namespace:HowLong.ViewModels"
+             x:TypeArguments="localvm:SettingsViewModel"
+             BackgroundColor="{DynamicResource PrimaryLightColor}">
+    <NavigationPage.TitleView>
+        <extensions:BaseTitleView/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <RelativeLayout x:Name="MainRlt"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+            <ScrollView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                        RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Padding="15">
+                    <reactive:LightLabel x:Name="HeaderLbl"
+                                         Text="{extensions:Translate SettingsText}"
+                                         VerticalOptions="Start"
+                                         HorizontalOptions="CenterAndExpand"
+                                         FontSize="Title"
+                                         TextColor="{StaticResource PrimaryBlueColor}"
+                                         HorizontalTextAlignment="Center"/>
+                    <StackLayout VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                                 Margin="{x:Static device:DeviceSize.Margin}"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="6">
+                        <reactive:LightLabel x:Name="ThemeLbl"
+                                             Text="{extensions:Translate ThemeText}"
+                                             FontSize="Medium"
+                                             VerticalOptions="Center"
+                                             TextColor="{StaticResource PrimaryBlueColor}"
+                                             HorizontalOptions="CenterAndExpand"
+                                             HorizontalTextAlignment="Center"/>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Center"
+                                     Spacing="20">
+                            <reactive:LightButton x:Name="LightThemeBtn"
+                                                  HorizontalOptions="CenterAndExpand"
+                                                  VerticalOptions="Center"
+                                                  HeightRequest="45"
+                                                  CornerRadius="6"
+                                                  BackgroundColor="White"
+                                                  TextColor="Black"
+                                                   WidthRequest="100"
+                                                  Text="{extensions:Translate LightThemeButton}"
+                                                  BorderColor="Black"
+                                                  BorderWidth="1"/>
+                            <reactive:LightButton x:Name="DarkThemeBtn"
+                                                  HorizontalOptions="CenterAndExpand"
+                                                  VerticalOptions="Center"
+                                                  HeightRequest="45"
+                                                  CornerRadius="6"
+                                                   WidthRequest="100"
+                                                  BackgroundColor="Black"
+                                                  TextColor="White"
+                                                  Text="{extensions:Translate DarkThemeButton}"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                                 Margin="{x:Static device:DeviceSize.Margin}"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="6">
+                        <reactive:LightLabel x:Name="LangLbl"
+                                             Text="{extensions:Translate LanguageText}"
+                                             FontSize="Medium"
+                                             VerticalOptions="Center"
+                                             TextColor="{StaticResource PrimaryBlueColor}"
+                                             HorizontalOptions="CenterAndExpand"
+                                             HorizontalTextAlignment="Center"/>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Center"
+                                     Spacing="20">
+                            <reactive:LightButton x:Name="RuBtn"
+                                                  HorizontalOptions="CenterAndExpand"
+                                                  VerticalOptions="Center"
+                                                  HeightRequest="45"
+                                                  CornerRadius="6"
+                                                  WidthRequest="100"
+                                                  BackgroundColor="{StaticResource PrimaryBlueColor}"
+                                                  TextColor="{DynamicResource PrimaryLightColor}"
+                                                  Text="       Русский       "/>
+                            <reactive:LightButton x:Name="EnBtn"
+                                                  HorizontalOptions="CenterAndExpand"
+                                                  VerticalOptions="Center"
+                                                  HeightRequest="45"
+                                                  CornerRadius="6"
+                                                  WidthRequest="100"
+                                                  BackgroundColor="{StaticResource PrimaryBlueColor}"
+                                                  TextColor="{DynamicResource PrimaryLightColor}"
+                                                  Text="       English       "/>
+                        </StackLayout>
+                    </StackLayout>
+                    <reactive:LightButton x:Name="WorkDaysBtn"
+                                          HorizontalOptions="CenterAndExpand"
+                                          VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                                          Margin="{x:Static device:DeviceSize.Margin}"
+                                          HeightRequest="45"
+                                          CornerRadius="6"
+                                          WidthRequest="140"
+                                          BackgroundColor="{StaticResource PrimaryBlueColor}"
+                                          TextColor="{DynamicResource PrimaryLightColor}"
+                                          Text="{extensions:Translate WeekdaysButton}"/>
+                    <reactive:LightButton x:Name="ClearBtn"
+                                          HorizontalOptions="CenterAndExpand"
+                                          VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                                          Margin="{x:Static device:DeviceSize.Margin}"
+                                          HeightRequest="45"
+                                          CornerRadius="6"
+                                          WidthRequest="140"
+                                          BackgroundColor="{StaticResource PrimaryBlueColor}"
+                                          TextColor="{DynamicResource PrimaryLightColor}"
+                                          Text="{extensions:Translate ClearHistoryButton}"/>
+                    <reactive:LightButton x:Name="SupportBtn"
+                                          HorizontalOptions="CenterAndExpand"
+                                          VerticalOptions="{x:Static device:DeviceSize.VerticalOptions}"
+                                          Margin="{x:Static device:DeviceSize.Margin}"
+                                          HeightRequest="45"
+                                          CornerRadius="6"
+                                          WidthRequest="140"
+                                          BackgroundColor="{StaticResource PrimaryBlueColor}"
+                                          TextColor="{DynamicResource PrimaryLightColor}"
+                                          Text="{extensions:Translate SupportButton}"/>
+                    <reactive:LightLabel VerticalOptions="EndAndExpand"
+                                         HorizontalOptions="CenterAndExpand"
+                                         FontSize="Small">
+                            <reactive:LightLabel.FormattedText>
+                                <FormattedString>
+                                    <Span Text="made by "
+                                          TextColor="{DynamicResource PrimaryDarkColor}"/>
+                                <Span Text="github"
+                                      TextColor="{StaticResource PrimaryBlueColor}"
+                                      x:Name="GitSpan">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="GitGstr"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                                <Span Text=", "
+                                      TextColor="{DynamicResource PrimaryDarkColor}"/>
+                                <Span Text="@mak100un"
+                                      TextColor="{StaticResource PrimaryBlueColor}"
+                                      x:Name="InstagramSpan">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="InstagramGstr"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                    <Span Text=", "
+                                          TextColor="{DynamicResource PrimaryDarkColor}"/>
+                                    <Span Text="mak_andr"
+                                          TextColor="{StaticResource PrimaryBlueColor}"
+                                          x:Name="VkSpan">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="VkGstr"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </reactive:LightLabel.FormattedText>
+                        </reactive:LightLabel>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout x:Name="LoadingStck"
+                         BackgroundColor="{DynamicResource PrimaryLightColor}"
+                         RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                         RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"/>
+            <ActivityIndicator x:Name="LoadingIndic"
+                               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-35}"
+                               RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-35}"
+                               RelativeLayout.WidthConstraint="70"
+                               RelativeLayout.HeightConstraint="70"
+                               Color="{StaticResource PrimaryBlueColor}"/>
+            <reactive:ShadowView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                                 RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                                 RelativeLayout.HeightConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.1, Constant=0}"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"/>
+        </RelativeLayout>
+    </ContentPage.Content>
+</reactive:ContentPageBase>
