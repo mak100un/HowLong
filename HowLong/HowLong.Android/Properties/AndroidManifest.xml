@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.incompany.HowLong" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2" package="com.incompany.HowLong" android:installLocation="auto" android:versionName="0.1">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
 	<application android:label="HowLong.Android" android:icon="@drawable/icon">
 		<service android:name="com.incompany.EndBroadcast" android:exported="false" />
