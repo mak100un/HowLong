@@ -16,7 +16,7 @@ Example in Xamarin Forms (Android and iOS) shows you:
 7.  Extension methods
 8.  Multi-language support
 
-![icon](https://github.com/mak100un/HowLong/blob/master/Images/squareIcon.png)
+![icon](https://github.com/mak100un/HowLong/blob/master/Images/icon.png)
 
 _P. S. I will be very glad if this solution will be useful. More samples - better code_ 😉  
 _Also will be happy to receive advices on improving the code: <incompanyoriginal@gmail.com>_
