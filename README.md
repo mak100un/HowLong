@@ -1,6 +1,6 @@
 # HowLong
 **This repository contains the “HowLong” sample.**
-Available on Google Play: link
+Available on Google Play: http://webdesign.ru.net
 
 Example in Xamarin Forms (Android and iOS) shows you:
 1)	the benefits of usage ReactiveUI and Autofac
