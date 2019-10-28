@@ -19,7 +19,7 @@ namespace HowLong.Droid.Broadcasts
                 builder.SetContentTitle(TranslationCodeExtension.GetTranslation("DayIsOverTitle"))
                 .SetContentText(TranslationCodeExtension.GetTranslation("DayIsOverText"))
                 .SetAutoCancel(true)
-                .SetSmallIcon(Resource.Drawable.iconSmall);
+                .SetSmallIcon(Resource.Drawable.icon);
 
                 var manager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
 

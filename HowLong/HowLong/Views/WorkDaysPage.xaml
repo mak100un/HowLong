@@ -63,7 +63,7 @@
                                          Text="{extensions:Translate MondayText}"
                                          TextColor="{StaticResource PrimaryBlueColor}"/>
                     <TimePicker Format="T"
-                                Margin="15,0,0,0"
+                                Margin="12,0,0,0"
                                 x:Name="MondayStartTmPck"
                                 HorizontalOptions="Start"
                                 VerticalOptions="Center"
@@ -94,7 +94,7 @@
                                          Text="{extensions:Translate TuesdayText}"
                                          TextColor="{StaticResource PrimaryBlueColor}"/>
                     <TimePicker Format="T"
-                                Margin="15,0,0,0"
+                                Margin="12,0,0,0"
                                 x:Name="TuesdayStartTmPck"
                                 HorizontalOptions="Start"
                                 VerticalOptions="Center"
@@ -125,7 +125,7 @@
                                          Text="{extensions:Translate WednesdayText}"
                                          TextColor="{StaticResource PrimaryBlueColor}"/>
                     <TimePicker Format="T"
-                                Margin="15,0,0,0"
+                                Margin="12,0,0,0"
                                 x:Name="WednesdayStartTmPck"
                                 HorizontalOptions="Start"
                                 VerticalOptions="Center"
@@ -156,7 +156,7 @@
                                          Text="{extensions:Translate ThursdayText}"
                                          TextColor="{StaticResource PrimaryBlueColor}"/>
                     <TimePicker Format="T"
-                                Margin="15,0,0,0"
+                                Margin="12,0,0,0"
                                 x:Name="ThursdayStartTmPck"
                                 HorizontalOptions="Start"
                                 VerticalOptions="Center"
@@ -188,7 +188,7 @@
                                  Text="{extensions:Translate FridayText}"
                                  TextColor="{StaticResource PrimaryBlueColor}"/>
                     <TimePicker Format="T"
-                                Margin="15,0,0,0"
+                                Margin="12,0,0,0"
                                 x:Name="FridayStartTmPck"
                                 HorizontalOptions="Start"
                                 VerticalOptions="Center"
@@ -219,7 +219,7 @@
                                          Text="{extensions:Translate SaturdayText}"
                                          TextColor="{StaticResource PrimaryBlueColor}"/>
                     <TimePicker Format="T"
-                                Margin="15,0,0,0"
+                                Margin="12,0,0,0"
                                 x:Name="SaturdayStartTmPck"
                                 HorizontalOptions="Start"
                                 VerticalOptions="Center"
@@ -251,7 +251,7 @@
                                              Text="{extensions:Translate SundayText}"
                                              TextColor="{StaticResource PrimaryBlueColor}"/>
                         <TimePicker Format="T"
-                                    Margin="15,0,0,0"
+                                    Margin="12,0,0,0"
                                     x:Name="SundayStartTmPck"
                                     HorizontalOptions="Start"
                                     VerticalOptions="Center"
