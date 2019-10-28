@@ -12,5 +12,5 @@ Example in Xamarin Forms (Android and iOS) shows you:
 5)	MVVM implemetetion
 6)	ViewModel navigation
 
-*P. S. I will be very glad if this solution will be useful. Also will be happy to receive advices on improving the code. More samples - better code *
+_P. S. I will be very glad if this solution will be useful. Also will be happy to receive advices on improving the code. More samples - better code_
 
