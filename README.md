@@ -1,5 +1,5 @@
 # HowLong
-This repository contains the “HowLong” sample.
+**This repository contains the “HowLong” sample.**
 Available on Google Play: link
 
 Example in Xamarin Forms (Android and iOS) shows you:
