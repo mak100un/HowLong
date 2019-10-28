@@ -11,6 +11,8 @@ Example in Xamarin Forms (Android and iOS) shows you:
 
 ![squareIcon](https://github.com/mak100un/HowLong/blob/master/Images/squareIcon.png)
 
+![HowLong-preview](https://github.com/mak100un/HowLong/blob/master/Videos/HowLong-preview.avi)
+
 Available on Google Play: _http://webdesign.ru.net_
 
 _P. S. I will be very glad if this solution will be useful. Also will be happy to receive advices on improving the code. More samples - better code_ 😉
