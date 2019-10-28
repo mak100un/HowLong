@@ -1,7 +1,9 @@
 # HowLong
 **This repository contains the «HowLong» sample.**
 
-Available on Google Play: _http://webdesign.ru.net_
+
+_Available on Google Play: http://webdesign.ru.net_
+
 
 
 Example in Xamarin Forms (Android and iOS) shows you:
