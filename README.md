@@ -1,12 +1,11 @@
 # HowLong
-**This repository contains the «HowLong» sample.**
-
-
-_Available on Google Play: http://webdesign.ru.net_
-
-
-
-Example in Xamarin Forms (Android and iOS) shows you:
+**This repository contains the «HowLong» sample.**  
+  
+_Available on Google Play: http://webdesign.ru.net_  
+  
+    
+    
+Example in Xamarin Forms (Android and iOS) shows you:  
 
 1.	The benefits of usage ReactiveUI and Autofac
 2.	Implementation of Android background notification service and also of iOS
@@ -19,8 +18,7 @@ Example in Xamarin Forms (Android and iOS) shows you:
 
 ![icon](https://github.com/mak100un/HowLong/blob/master/Images/squareIcon.png)
 
-_P. S. I will be very glad if this solution will be useful. More samples - better code_ 😉
-
+_P. S. I will be very glad if this solution will be useful. More samples - better code_ 😉  
 _Also will be happy to receive advices on improving the code:<incompanyoriginal@gmail.com>_
 
 
