@@ -3,6 +3,7 @@
 
 Available on Google Play: _http://webdesign.ru.net_
 
+
 Example in Xamarin Forms (Android and iOS) shows you:
 
 1.	The benefits of usage ReactiveUI and Autofac
@@ -16,5 +17,6 @@ Example in Xamarin Forms (Android and iOS) shows you:
 
 ![icon](https://github.com/mak100un/HowLong/blob/master/Images/squareIcon.png)
 
-_P. S. I will be very glad if this solution will be useful. Also will be happy to receive advices on improving the code. More samples - better code_ 😉
+_P. S. I will be very glad if this solution will be useful. Also will be happy to receive advices on improving the code:_ <incompanyoriginal@gmail.com>
+_More samples - better code_ 😉
 
