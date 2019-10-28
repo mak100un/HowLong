@@ -9,7 +9,7 @@ Example in Xamarin Forms (Android and iOS) shows you:
 5.	MVVM implemetetion
 6.	ViewModel navigation
 
-![squareIcon](https://github.com/mak100un/HowLong/blob/master/Images/squareIcon.png)
+![icon](https://github.com/mak100un/HowLong/blob/master/Images/icon.png)
 
 Available on Google Play: _http://webdesign.ru.net_
 
