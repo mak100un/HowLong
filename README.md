@@ -10,7 +10,7 @@ Example in Xamarin Forms (Android and iOS) shows you:
 6.	ViewModel navigation
 
 
-_Available on Google Play: http://webdesign.ru.net_
+Available on Google Play: _http://webdesign.ru.net_
 
 _P. S. I will be very glad if this solution will be useful. Also will be happy to receive advices on improving the code. More samples - better code_ 😉
 
