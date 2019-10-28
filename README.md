@@ -1,5 +1,5 @@
 # HowLong
-**This repository contains the “HowLong” sample.**
+**This repository contains the «HowLong» sample.**
 
 Example in Xamarin Forms (Android and iOS) shows you:
 1.	The benefits of usage ReactiveUI and Autofac
