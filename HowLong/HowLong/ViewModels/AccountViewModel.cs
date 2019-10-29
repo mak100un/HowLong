@@ -87,17 +87,17 @@ namespace HowLong.ViewModels
             EndWorkTime = currentAccounting.EndWorkTime;
             WorkDate = currentAccounting.WorkDate;
 
-            if (!CurrentAccounting.IsClosed) Initialize();
+            if (!CurrentAccounting.IsClosed) InitializeAsync();
 
             StartWorkCommand = ReactiveCommand.Create(() => StartWorkTime = DateTime.Now.TimeOfDay);
             EndWorkCommand = ReactiveCommand.Create(() => EndWorkTime = DateTime.Now.TimeOfDay);
-            AddBreakCommand = ReactiveCommand.CreateFromTask(AddBreakExecute);
-            SaveCommand = ReactiveCommand.CreateFromTask(SaveExecute);
-            AllCommand = ReactiveCommand.CreateFromTask(AllExecute);
-            CurrentCommand = ReactiveCommand.CreateFromTask(CurrentExecute);
+            AddBreakCommand = ReactiveCommand.CreateFromTask(AddBreakExecuteAsync);
+            SaveCommand = ReactiveCommand.CreateFromTask(SaveExecuteAsync);
+            AllCommand = ReactiveCommand.CreateFromTask(AllExecuteAsync);
+            CurrentCommand = ReactiveCommand.CreateFromTask(CurrentExecuteAsync);
             DeleteBreakCommand = ReactiveCommand.CreateFromTask<Break, Unit>(async _ =>
              {
-                 await DeleteBreakExecute(_);
+                 await DeleteBreakExecuteAsync(_);
                  return Unit.Default;
              });
 
@@ -105,13 +105,13 @@ namespace HowLong.ViewModels
                 .Skip(1)
                 .Throttle(TimeSpan.FromMilliseconds(100), RxApp.MainThreadScheduler)
                 .Select(x => x)
-                .Subscribe(async _ => await UpdateStartWorkExecute());
+                .Subscribe(async _ => await UpdateStartWorkExecuteAsync());
 
             this.WhenAnyValue(x => x.EndWorkTime)
                 .Skip(1)
                 .Throttle(TimeSpan.FromMilliseconds(100), RxApp.MainThreadScheduler)
                 .Select(x => x)
-                .Subscribe(async _ => await UpdateEndWorkExecute());
+                .Subscribe(async _ => await UpdateEndWorkExecuteAsync());
 
             this.WhenAnyValue(x => x.SelectedBreak)
                 .Skip(1)
@@ -120,17 +120,17 @@ namespace HowLong.ViewModels
                 .InvokeCommand(DeleteBreakCommand);
         }
 
-        private static async Task CurrentExecute() => await Application.Current.MainPage.DisplayAlert(
+        private static async Task CurrentExecuteAsync() => await Application.Current.MainPage.DisplayAlert(
             TranslationCodeExtension.GetTranslation("RemainedCurrentTitle"),
             TranslationCodeExtension.GetTranslation("RemainedCurrentText"),
             TranslationCodeExtension.GetTranslation("OkText"));
 
-        private static async Task AllExecute() => await Application.Current.MainPage.DisplayAlert(
+        private static async Task AllExecuteAsync() => await Application.Current.MainPage.DisplayAlert(
             TranslationCodeExtension.GetTranslation("RemainedAllTitle"),
             TranslationCodeExtension.GetTranslation("RemainedAllText"),
             TranslationCodeExtension.GetTranslation("OkText"));
 
-        private async Task AddBreakExecute()
+        private async Task AddBreakExecuteAsync()
         {
             var newBreak = new Break
             {
@@ -148,7 +148,7 @@ namespace HowLong.ViewModels
                 Breaks.Add(newBreak);
         }
 
-        private async Task DeleteBreakExecute(Break @break)
+        private async Task DeleteBreakExecuteAsync(Break @break)
         {
             IsEnable = false;
             await Task.Delay(100);
@@ -171,7 +171,7 @@ namespace HowLong.ViewModels
             IsEnable = true;
         }
 
-        private async Task UpdateEndWorkExecute()
+        private async Task UpdateEndWorkExecuteAsync()
         {
             if (StartWorkTime > EndWorkTime) StartWorkTime = EndWorkTime;
 
@@ -183,7 +183,7 @@ namespace HowLong.ViewModels
                 .ConfigureAwait(false);
         }
 
-        private async Task UpdateStartWorkExecute()
+        private async Task UpdateStartWorkExecuteAsync()
         {
             if (DateTime.Today > WorkDate && !CurrentAccounting.IsClosed) return;
 
@@ -203,7 +203,7 @@ namespace HowLong.ViewModels
         {
             if (DateTime.Today > WorkDate)
             {
-                if (_isTimerStarted) CloseEndedDay();
+                if (_isTimerStarted) CloseEndedDayAsync();
                 return _isTimerStarted = false;
             }
 
@@ -223,20 +223,20 @@ namespace HowLong.ViewModels
                 && CurrentOverWork <= TimeSpan.FromSeconds(1)
                 && CurrentAccounting.IsWorking
                 && _isTimerStarted)
-                ShowWorkingEnd();
+                ShowWorkingEndAsync();
                 
 
             if (halfTime > default(TimeSpan)
                 && halfTime <= TimeSpan.FromSeconds(1)
                 && CurrentAccounting.IsWorking
                 && _isTimerStarted)
-                ShowWorkingHalf();
+                ShowWorkingHalfAsync();
                 
             TotalOverWork = CurrentOverWork + _totalDbOverWork;
             return _isTimerStarted;
         }
 
-        private async void CloseEndedDay()
+        private async void CloseEndedDayAsync()
         {
             if (WorkDate == DateTime.Today) return;
             IsEnable = false;
@@ -295,21 +295,21 @@ namespace HowLong.ViewModels
             Breaks = currentAccounting.Breaks;
 
             EndWorkTime = currentAccounting.EndWorkTime;
-            if (!CurrentAccounting.IsClosed) Initialize();
+            if (!CurrentAccounting.IsClosed) InitializeAsync();
             _mainPage.UpdateWorkingDay();
         }
 
-        private static async void ShowWorkingHalf() => await Application.Current.MainPage.DisplayAlert(
+        private static async void ShowWorkingHalfAsync() => await Application.Current.MainPage.DisplayAlert(
             TranslationCodeExtension.GetTranslation("HalfWorkTitle"),
             TranslationCodeExtension.GetTranslation("HalfWorkText"),
             TranslationCodeExtension.GetTranslation("YesHalfWorkText"));
 
-        private static async void ShowWorkingEnd() => await Application.Current.MainPage.DisplayAlert(
+        private static async void ShowWorkingEndAsync() => await Application.Current.MainPage.DisplayAlert(
             TranslationCodeExtension.GetTranslation("DayIsOverTitle"),
             TranslationCodeExtension.GetTranslation("DayIsOverText"),
             TranslationCodeExtension.GetTranslation("YesDayIsOverText"));
 
-        private async Task SaveExecute()
+        private async Task SaveExecuteAsync()
         {
             IsEnable = false;
             await Task.Delay(100);
@@ -385,7 +385,7 @@ namespace HowLong.ViewModels
             IsEnable = true;
         }
 
-        private async void Initialize()
+        private async void InitializeAsync()
         {
             _totalDbOverWork = TimeSpan.FromMinutes(await _timeAccountingContext.TimeAccounts.Where(x => x.WorkDate < WorkDate && x.IsClosed)
                 .Include(x => x.Breaks)
@@ -412,7 +412,7 @@ namespace HowLong.ViewModels
             TotalOverWork = CurrentOverWork + _totalDbOverWork;
         }
 
-        public virtual void Subscribe()
+        public void Subscribe()
         {
             if (CurrentAccounting.IsClosed) return;
             DependencyService.Get<IShowNotify>()
@@ -420,7 +420,7 @@ namespace HowLong.ViewModels
             _isTimerStarted = true;
             Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
         }
-        public virtual void Unsubscribe()
+        public void Unsubscribe()
         {
             _isTimerStarted = false;
             if (CurrentAccounting.IsClosed || !CurrentAccounting.IsWorking || !CurrentAccounting.IsStarted ||

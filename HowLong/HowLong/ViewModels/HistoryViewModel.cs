@@ -40,7 +40,7 @@ namespace HowLong.ViewModels
             new Command(async () =>
             {
                 IsRefreshing = true;
-                await UpdateHistory();
+                await UpdateHistoryAsync();
                 IsRefreshing = false;
             });
 
@@ -56,7 +56,7 @@ namespace HowLong.ViewModels
             _navigationService = navigationService;
             NavigateToAccountCommand = ReactiveCommand.CreateFromTask<HistoryAccount, Unit>(async _ =>
             {
-                await NavigateToAccountExecute(_);
+                await NavigateToAccountExecuteAsync(_);
                 return Unit.Default;
             });
             this.WhenAnyValue(x => x.SelectedAccount)
@@ -78,7 +78,7 @@ namespace HowLong.ViewModels
                 .GroupBy(x => x.TimeAccount.WorkDate)
                 .Sum(g => g.First().DayOverWork));
 
-        private async Task NavigateToAccountExecute(HistoryAccount arg)
+        private async Task NavigateToAccountExecuteAsync(HistoryAccount arg)
         {
             IsEnable = false;
             await Task.Delay(100);
@@ -181,7 +181,7 @@ namespace HowLong.ViewModels
             }
             UpdateTotalOverWork(AllAccounts);
         }
-        public async Task UpdateHistory()
+        public async Task UpdateHistoryAsync()
         {
             var allAccounts = await _timeAccountingContext.TimeAccounts.Where(x => x.IsClosed)
                 .Include(x => x.Breaks)

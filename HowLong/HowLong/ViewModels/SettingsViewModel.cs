@@ -44,8 +44,8 @@ namespace HowLong.ViewModels
             _workDaysFactory = workDaysFactory;
             _timeAccountingContext = timeAccountingContext;
             _navigationService = navigationService;
-            ClearCommand = ReactiveCommand.CreateFromTask(ClearExecute);
-            WorkDaysCommand = ReactiveCommand.CreateFromTask(WorkDaysExecute);
+            ClearCommand = ReactiveCommand.CreateFromTask(ClearExecuteAsync);
+            WorkDaysCommand = ReactiveCommand.CreateFromTask(WorkDaysExecuteAsync);
             LightCommand = ReactiveCommand.Create(() =>
             {
                 if (!Settings.IsDark) return;
@@ -58,7 +58,7 @@ namespace HowLong.ViewModels
                 Settings.IsDark = true;
                 ThemeService.ChangeToDark();
             });
-            WorkDaysCommand = ReactiveCommand.CreateFromTask(WorkDaysExecute);
+            WorkDaysCommand = ReactiveCommand.CreateFromTask(WorkDaysExecuteAsync);
             InstagramCommand = ReactiveCommand.CreateFromTask(async() =>
             {
                 InstagramBackgroundColor = Color.FromHex("#D4F4FF");
@@ -90,7 +90,7 @@ namespace HowLong.ViewModels
             });
         }
 
-        private async Task WorkDaysExecute()
+        private async Task WorkDaysExecuteAsync()
         {
             IsEnable = false;
             await Task.Delay(100);
@@ -102,7 +102,7 @@ namespace HowLong.ViewModels
             IsEnable = true;
         }
 
-        private async Task ClearExecute()
+        private async Task ClearExecuteAsync()
         {
             IsEnable = false;
             await Task.Delay(100);

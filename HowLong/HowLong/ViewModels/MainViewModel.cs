@@ -10,6 +10,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
 using System.Threading.Tasks;
+using HowLong.Values;
+using Plugin.LatestVersion;
 using Xamarin.Forms;
 
 namespace HowLong.ViewModels
@@ -24,6 +26,7 @@ namespace HowLong.ViewModels
         public ReactiveCommand<Unit, Unit> HistoryCommand { get; internal set; }
         public ReactiveCommand<Unit, Unit> CurrentCommand { get; internal set; }
         public ReactiveCommand<Unit, Unit> SettingsCommand { get; internal set; }
+        public ReactiveCommand<Unit, Unit> RateCommand { get; internal set; }
 
         public MainViewModel
         (
@@ -39,12 +42,17 @@ namespace HowLong.ViewModels
             _settingsFactory = settingsFactory;
             _timeAccountingContext = timeAccountingContext;
             _navigationService = navigationService;
-            HistoryCommand = ReactiveCommand.CreateFromTask(HistoryExecute);
-            CurrentCommand = ReactiveCommand.CreateFromTask(CurrentExecute);
-            SettingsCommand = ReactiveCommand.CreateFromTask(SettingsExecute);
+            HistoryCommand = ReactiveCommand.CreateFromTask(HistoryExecuteAsync);
+            CurrentCommand = ReactiveCommand.CreateFromTask(CurrentExecuteAsync);
+            SettingsCommand = ReactiveCommand.CreateFromTask(SettingsExecuteAsync);
+            RateCommand = ReactiveCommand.CreateFromTask(RateExecuteAsync);
         }
 
-        private async Task SettingsExecute()
+        private static async Task RateExecuteAsync() => 
+            await CrossLatestVersion.Current.OpenAppInStore(BaseValue.PackageName);
+          
+
+        private async Task SettingsExecuteAsync()
         {
             IsEnable = false;
             await Task.Delay(100);
@@ -56,7 +64,7 @@ namespace HowLong.ViewModels
             IsEnable = true;
         }
 
-        private async Task CurrentExecute()
+        private async Task CurrentExecuteAsync()
         {
             IsEnable = false;
             await Task.Delay(100);
@@ -180,13 +188,13 @@ namespace HowLong.ViewModels
             IsEnable = true;
         }
 
-        private async Task HistoryExecute()
+        private async Task HistoryExecuteAsync()
         {
             IsEnable = false;
             await Task.Delay(100);
             var history = _historyFactory();
             await Task.Delay(300);
-            await history.UpdateHistory();
+            await history.UpdateHistoryAsync();
             await _navigationService.NavigateToAsync
                     (
                        history

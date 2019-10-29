@@ -222,6 +222,15 @@
   <data name="EndDayTitle" xml:space="preserve">
     <value>Завершить день?</value>
   </data>
+  <data name="ErrorConnectionText" xml:space="preserve">
+    <value>Невозможно подключиться к серверу магазина. Проверьте подключение к интернету и попробуйте снова</value>
+  </data>
+  <data name="ErrorConnectionTitle" xml:space="preserve">
+    <value>Ошибка подключения</value>
+  </data>
+  <data name="EstimateApp" xml:space="preserve">
+    <value>Оценить приложение</value>
+  </data>
   <data name="ExitText" xml:space="preserve">
     <value>Вы уверены, что хотите закрыть приложение?</value>
   </data>
@@ -236,6 +245,9 @@
   </data>
   <data name="FridayText" xml:space="preserve">
     <value>Пятница</value>
+  </data>
+  <data name="GoToStore" xml:space="preserve">
+    <value>Перейти в магазин</value>
   </data>
   <data name="HalfWorkText" xml:space="preserve">
     <value>Вы преодолели экватор рабочего дня. Осталась ровно половина💪</value>
@@ -383,6 +395,12 @@
   </data>
   <data name="TuesdayText" xml:space="preserve">
     <value>Вторник</value>
+  </data>
+  <data name="UpdateVersionText" xml:space="preserve">
+    <value>Для продолжения обновите версию приложения до последней</value>
+  </data>
+  <data name="UpdateVersionTitle" xml:space="preserve">
+    <value>Доступно обновление</value>
   </data>
   <data name="WeaknessesText" xml:space="preserve">
     <value>Недоработка:</value>

@@ -222,6 +222,15 @@
   <data name="EndDayTitle" xml:space="preserve">
     <value>End the day?</value>
   </data>
+  <data name="ErrorConnectionText" xml:space="preserve">
+    <value>Can't connect to store's server. Check your Internet connection and try again</value>
+  </data>
+  <data name="ErrorConnectionTitle" xml:space="preserve">
+    <value>Error Connection</value>
+  </data>
+  <data name="EstimateApp" xml:space="preserve">
+    <value>Rate the app</value>
+  </data>
   <data name="ExitText" xml:space="preserve">
     <value>Are you sure you want to close the application?</value>
   </data>
@@ -236,6 +245,9 @@
   </data>
   <data name="FridayText" xml:space="preserve">
     <value>Friday</value>
+  </data>
+  <data name="GoToStore" xml:space="preserve">
+    <value>Go to the store</value>
   </data>
   <data name="HalfWorkText" xml:space="preserve">
     <value>You have crossed the equator of the working day. There's only half of it left💪</value>
@@ -383,6 +395,12 @@
   </data>
   <data name="TuesdayText" xml:space="preserve">
     <value>Tuesday</value>
+  </data>
+  <data name="UpdateVersionText" xml:space="preserve">
+    <value>Please update to the latest version of the app to continue</value>
+  </data>
+  <data name="UpdateVersionTitle" xml:space="preserve">
+    <value>An update is available</value>
   </data>
   <data name="WeaknessesText" xml:space="preserve">
     <value>Weaknesses:</value>

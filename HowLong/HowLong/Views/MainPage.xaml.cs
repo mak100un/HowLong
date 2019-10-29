@@ -31,6 +31,7 @@ namespace HowLong.Views
             CurrentBtn.Text = TranslationCodeExtension.GetTranslation("CurrentDayButton");
             HistoryBtn.Text = TranslationCodeExtension.GetTranslation("HistoryButton");
             SettingsBtn.Text = TranslationCodeExtension.GetTranslation("SettingsButton");
+            RateTlbrItm.Text = TranslationCodeExtension.GetTranslation("EstimateApp");
         }
         protected override void OnAppearing()
         {
@@ -38,6 +39,7 @@ namespace HowLong.Views
 
             this.WhenActivated(disposables =>
             {
+                this.BindCommand(ViewModel, vm => vm.RateCommand, v => v.RateTlbrItm);
                 this.BindCommand(ViewModel, vm => vm.HistoryCommand, v => v.HistoryBtn);
                 this.BindCommand(ViewModel, vm => vm.CurrentCommand, v => v.CurrentBtn);
                 this.BindCommand(ViewModel, vm => vm.SettingsCommand, v => v.SettingsBtn);

@@ -13,6 +13,12 @@
              x:TypeArguments="localvm:MainViewModel"
              BackgroundColor="{DynamicResource PrimaryLightColor}"
              x:Class="HowLong.Views.MainPage">
+    <reactive:ContentPageBase.ToolbarItems>
+        <ToolbarItem Order="Secondary"
+                     x:Name="RateTlbrItm"
+                     Text="{extensions:Translate EstimateApp}"
+                     Priority="1"/>
+    </reactive:ContentPageBase.ToolbarItems>
     <ContentPage.Content>
         <RelativeLayout x:Name="MainRlt"
                         BackgroundColor="Transparent"
