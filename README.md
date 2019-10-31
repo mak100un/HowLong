@@ -1,7 +1,7 @@
 # HowLong
 **This repository contains the «HowLong» sample.**  
   
-_Available on Google Play: http://webdesign.ru.net_  
+_Available on Google Play: https://play.google.com/store/apps/details?id=com.incompany.HowLong
   
     
     
