@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<linker>
+  <assembly fullname="mscorlib">
+    <type fullname="System.String">
+      <method name="Compare"/>
+      <method name="CompareTo"/>
+      <method name="ToUpper"/>
+      <method name="ToLower"/>
+    </type>
+  </assembly>
+  <assembly fullname="System.Core">
+    <type fullname="System.Linq.Expressions.Expression`1"/>
+    <type fullname="System.Linq.Queryable"/>
+  </assembly>
+</linker>

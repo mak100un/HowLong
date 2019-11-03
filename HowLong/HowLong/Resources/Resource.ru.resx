@@ -204,6 +204,12 @@
   <data name="DeleteDayTitle" xml:space="preserve">
     <value>Удалить день?</value>
   </data>
+  <data name="DevelopTextBtn" xml:space="preserve">
+    <value>На развитие 📚</value>
+  </data>
+  <data name="DevelopThanksText" xml:space="preserve">
+    <value>Спасибо! Хорошего дня😉</value>
+  </data>
   <data name="EditAction" xml:space="preserve">
     <value>Редактировать</value>
   </data>
@@ -324,6 +330,12 @@
   <data name="OverworkText" xml:space="preserve">
     <value>Переработка:</value>
   </data>
+  <data name="PaymentNotSupportedText" xml:space="preserve">
+    <value>На данном устройстве не поддерживаются встроенные покупки</value>
+  </data>
+  <data name="PaymentNotSupportedTitle" xml:space="preserve">
+    <value>Покупки не поддерживаются</value>
+  </data>
   <data name="RemainedAll" xml:space="preserve">
     <value>Осталось всего:</value>
   </data>
@@ -365,6 +377,18 @@
   </data>
   <data name="SettingsText" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="StoreServicesConnectProblemText" xml:space="preserve">
+    <value>Не удается подключиться к сервисам магазина. Попробуйте повторить попытку позже</value>
+  </data>
+  <data name="StoreServicesConnectProblemTitle" xml:space="preserve">
+    <value>Ошибка подключения к магазину</value>
+  </data>
+  <data name="StoreServicesUnavailableText" xml:space="preserve">
+    <value>На данный момент сервис недоступен. Попробуйте повторить попытку позже</value>
+  </data>
+  <data name="StoreServicesUnavailableTitle" xml:space="preserve">
+    <value>Сервис недоступен</value>
   </data>
   <data name="SundayShortText" xml:space="preserve">
     <value>Вс</value>

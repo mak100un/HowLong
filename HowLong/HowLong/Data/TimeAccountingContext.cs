@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace HowLong.Data
 {
-	public sealed class TimeAccountingContext : DbContext
+    public sealed class TimeAccountingContext : DbContext
 	{
 		private readonly string _databasePath;
 		public DbSet<TimeAccount> TimeAccounts { get; set; }

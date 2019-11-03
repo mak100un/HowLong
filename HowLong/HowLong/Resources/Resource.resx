@@ -204,6 +204,12 @@
   <data name="DeleteDayTitle" xml:space="preserve">
     <value>Delete day?</value>
   </data>
+  <data name="DevelopTextBtn" xml:space="preserve">
+    <value>On the development📚</value>
+  </data>
+  <data name="DevelopThanksText" xml:space="preserve">
+    <value>Thanks! Have a nice day😉</value>
+  </data>
   <data name="EditAction" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -324,6 +330,12 @@
   <data name="OverworkText" xml:space="preserve">
     <value>Overwork:</value>
   </data>
+  <data name="PaymentNotSupportedText" xml:space="preserve">
+    <value>In-app purchases are not supported on this device</value>
+  </data>
+  <data name="PaymentNotSupportedTitle" xml:space="preserve">
+    <value>Purchases are not supported</value>
+  </data>
   <data name="RemainedAll" xml:space="preserve">
     <value>Remain only:</value>
   </data>
@@ -365,6 +377,18 @@
   </data>
   <data name="SettingsText" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="StoreServicesConnectProblemText" xml:space="preserve">
+    <value>Unable to connect to store services. Please, try again later</value>
+  </data>
+  <data name="StoreServicesConnectProblemTitle" xml:space="preserve">
+    <value>Error connecting to store</value>
+  </data>
+  <data name="StoreServicesUnavailableText" xml:space="preserve">
+    <value>The service is currently unavailable. Please, try again later</value>
+  </data>
+  <data name="StoreServicesUnavailableTitle" xml:space="preserve">
+    <value>The service is not available</value>
   </data>
   <data name="SundayShortText" xml:space="preserve">
     <value>Sun</value>

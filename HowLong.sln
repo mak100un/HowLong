@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowLong.Android", "HowLong\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowLong.iOS", "HowLong\HowLong.iOS\HowLong.iOS.csproj", "{179AA823-621E-4FBB-813B-7A52C8C3D387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowLong", "HowLong\HowLong\HowLong.csproj", "{C53441A7-16B4-4CEF-95F4-8491484782BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowLong", "HowLong\HowLong\HowLong.csproj", "{C53441A7-16B4-4CEF-95F4-8491484782BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

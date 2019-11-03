@@ -18,7 +18,7 @@ namespace HowLong.iOS
         }
         private static void InitTheme()
         {
-            var smallScreen = (int)UIScreen.MainScreen.Bounds.Height < 620;
+            var smallScreen = (int)UIScreen.MainScreen.Bounds.Height < 630;
 
             DeviceSize.Margin = smallScreen
                 ? new Thickness(0, 12)

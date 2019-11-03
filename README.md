@@ -1,7 +1,7 @@
 # HowLong
 **This repository contains the «HowLong» sample.**  
   
-_Available on Google Play: https://play.google.com/store/apps/details?id=com.incompany.HowLong
+_Available on Google Play: https://play.google.com/store/apps/details?id=com.incompany.HowLong_
   
     
     
@@ -15,6 +15,7 @@ Example in Xamarin Forms (Android and iOS) shows you:
 6.	ViewModel navigation (routing)
 7.  Extension methods
 8.  Multi-language support
+9.  Implementation of InAppBilling with consumable products
 
 ![icon](https://github.com/mak100un/HowLong/blob/master/Images/icon.png)
 

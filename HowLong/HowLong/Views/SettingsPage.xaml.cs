@@ -60,6 +60,7 @@ namespace HowLong.Views
                 this.BindCommand(ViewModel, vm => vm.InstagramCommand, v => v.InstagramGstr);
                 this.BindCommand(ViewModel, vm => vm.VkCommand, v => v.VkGstr);
                 this.BindCommand(ViewModel, vm => vm.GitCommand, v => v.GitGstr);
+                this.BindCommand(ViewModel, vm => vm.DevelopCommand, v => v.DevelopBtn);
 
                 this.OneWayBind(ViewModel, vm => vm.VkBackgroundColor, v => v.VkSpan.BackgroundColor)
                 .DisposeWith(SubscriptionDisposables);
@@ -89,6 +90,7 @@ namespace HowLong.Views
             WorkDaysBtn.Text = TranslationCodeExtension.GetTranslation("WeekdaysButton");
             ClearBtn.Text = TranslationCodeExtension.GetTranslation("ClearHistoryButton");
             SupportBtn.Text = TranslationCodeExtension.GetTranslation("SupportButton");
+            DevelopBtn.Text = TranslationCodeExtension.GetTranslation("DevelopTextBtn"); 
         }
 
        

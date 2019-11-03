@@ -78,3 +78,4 @@ Thumbs.db
 
 *.dotCover
 /HowLong/HowLong.Android/Properties/AndroidManifest.xml
+/HowLong/HowLong.iOS/Info.plist
