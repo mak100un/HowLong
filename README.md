@@ -16,6 +16,7 @@ Example in Xamarin Forms (Android and iOS) shows you:
 7.  Extension methods
 8.  Multi-language support
 9.  Implementation of InAppBilling with consumable products
+10.  LinkDescription.xml for SdkOnly AndroidLinkMode with EFCore.Sqlite
 
 ![icon](https://github.com/mak100un/HowLong/blob/master/Images/icon.png)
 
