@@ -9,6 +9,7 @@
                           xmlns:localvm="clr-namespace:HowLong.ViewModels"
                           xmlns:converters="clr-namespace:HowLong.Converters"
                           xmlns:templates="clr-namespace:HowLong.Templates"
+                          xmlns:fabControl="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
                           mc:Ignorable="d"
                           BackgroundColor="{DynamicResource PrimaryLightColor}"
                           x:Class="HowLong.Views.HistoryPage">
@@ -25,6 +26,10 @@
                         BackgroundColor="Transparent"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
+            <DatePicker x:Name="DayPicker"
+                        Format="D"
+                        IsEnabled="False"
+                        IsVisible="False"/>
             <Grid RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
                   RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
@@ -108,6 +113,13 @@
                                            x:Name="TotalOverWorkLbl"/>
                 </StackLayout>
             </Grid>
+            <fabControl:FloatingActionButtonView x:Name="CreateBtn"
+                                             ImageName="plusImage.png"
+                                             ColorNormal="{StaticResource SecondaryColor}"
+                                             ColorPressed="{StaticResource SecondaryHelpColor}"
+                                             HasShadow="True"
+                                             RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-90}"
+                                             RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-140}"/>
             <StackLayout x:Name="LoadingStck"
                          BackgroundColor="{DynamicResource PrimaryLightColor}"
                          RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
@@ -117,8 +129,8 @@
             <ActivityIndicator x:Name="LoadingIndic"
                                RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-35}"
                                RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-35}"
-                               RelativeLayout.WidthConstraint="70"
-                               RelativeLayout.HeightConstraint="70"
+                               RelativeLayout.WidthConstraint="60"
+                               RelativeLayout.HeightConstraint="60"
                                Color="{StaticResource PrimaryBlueColor}"/>
             <reactive:ShadowView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
                                  RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"

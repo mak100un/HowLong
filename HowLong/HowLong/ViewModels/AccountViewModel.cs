@@ -1,4 +1,5 @@
 ﻿using HowLong.Data;
+using HowLong.DependencyServices;
 using HowLong.Extensions;
 using HowLong.Models;
 using HowLong.Navigation;
@@ -14,7 +15,6 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using HowLong.DependencyServices;
 using Xamarin.Forms;
 
 namespace HowLong.ViewModels
@@ -27,8 +27,9 @@ namespace HowLong.ViewModels
         private readonly HistoryViewModel _historyViewModel;
         private readonly INavigationService _navigationService;
         private double _workedTime;
+        private TimeAccount _currentAccounting;
         [Reactive]
-        public TimeAccount CurrentAccounting { get; set; }
+        public bool FromHistory { get; set; }
         private bool _isTimerStarted;
         [Reactive]
         public bool IsStarted { get; set; }
@@ -58,25 +59,27 @@ namespace HowLong.ViewModels
         (
             TimeAccount currentAccounting,
             double workedTime,
+            bool fromHistory,
             INavigationService navigationService,
             HistoryViewModel historyViewModel,
             MainPage mainPage,
             TimeAccountingContext timeAccountingContext
         )
         {
+            FromHistory = fromHistory;
             _timeAccountingContext = timeAccountingContext;
             _mainPage = mainPage;
             _historyViewModel = historyViewModel;
             _navigationService = navigationService;
             _workedTime = workedTime;
-            CurrentAccounting = currentAccounting;
+            _currentAccounting = currentAccounting;
             _isTimerStarted = !currentAccounting.IsClosed;
             IsStarted = currentAccounting.IsStarted;
             StartWorkTime = currentAccounting.StartWorkTime;
-            if (!CurrentAccounting.IsClosed) Breaks = currentAccounting.Breaks;
+            if (!_currentAccounting.IsClosed) Breaks = currentAccounting.Breaks;
             else
                 Breaks = new ObservableCollection<Break>(
-                    currentAccounting.Breaks.OrderBy(x=>x.StartBreakTime)
+                    currentAccounting.Breaks.OrderBy(x => x.StartBreakTime)
                         .Select(@break => new Break
                         {
                             EndBreakTime = @break.EndBreakTime,
@@ -87,7 +90,7 @@ namespace HowLong.ViewModels
             EndWorkTime = currentAccounting.EndWorkTime;
             WorkDate = currentAccounting.WorkDate;
 
-            if (!CurrentAccounting.IsClosed) InitializeAsync();
+            if (!FromHistory) InitializeAsync();
 
             StartWorkCommand = ReactiveCommand.Create(() => StartWorkTime = DateTime.Now.TimeOfDay);
             EndWorkCommand = ReactiveCommand.Create(() => EndWorkTime = DateTime.Now.TimeOfDay);
@@ -104,19 +107,16 @@ namespace HowLong.ViewModels
             this.WhenAnyValue(x => x.StartWorkTime)
                 .Skip(1)
                 .Throttle(TimeSpan.FromMilliseconds(100), RxApp.MainThreadScheduler)
-                .Select(x => x)
                 .Subscribe(async _ => await UpdateStartWorkExecuteAsync());
 
             this.WhenAnyValue(x => x.EndWorkTime)
                 .Skip(1)
                 .Throttle(TimeSpan.FromMilliseconds(100), RxApp.MainThreadScheduler)
-                .Select(x => x)
                 .Subscribe(async _ => await UpdateEndWorkExecuteAsync());
 
             this.WhenAnyValue(x => x.SelectedBreak)
                 .Skip(1)
                 .Where(x => x != null)
-                .Select(x => x)
                 .InvokeCommand(DeleteBreakCommand);
         }
 
@@ -136,9 +136,9 @@ namespace HowLong.ViewModels
             {
                 StartBreakTime = DateTime.Now.TimeOfDay.TotalMinutes,
                 EndBreakTime = DateTime.Now.TimeOfDay.TotalMinutes,
-                TimeAccount = CurrentAccounting
+                TimeAccount = _currentAccounting
             };
-            if (!CurrentAccounting.IsClosed)
+            if (!_currentAccounting.IsClosed)
             {
                 _timeAccountingContext.Breaks.Add(newBreak);
                 await _timeAccountingContext.SaveChangesAsync()
@@ -160,7 +160,7 @@ namespace HowLong.ViewModels
             if (result)
             {
                 await Task.Delay(50);
-                if (!CurrentAccounting.IsClosed)
+                if (!_currentAccounting.IsClosed)
                 {
                     _timeAccountingContext.Breaks.Remove(@break);
                     await _timeAccountingContext.SaveChangesAsync()
@@ -175,27 +175,27 @@ namespace HowLong.ViewModels
         {
             if (StartWorkTime > EndWorkTime) StartWorkTime = EndWorkTime;
 
-            if (EndWorkTime == CurrentAccounting.EndWorkTime || CurrentAccounting.IsClosed) return;
+            if (EndWorkTime == _currentAccounting.EndWorkTime || _currentAccounting.IsClosed) return;
 
-            CurrentAccounting.EndWorkTime = EndWorkTime;
-            _timeAccountingContext.Entry(CurrentAccounting).State = EntityState.Modified;
+            _currentAccounting.EndWorkTime = EndWorkTime;
+            _timeAccountingContext.Entry(_currentAccounting).State = EntityState.Modified;
             await _timeAccountingContext.SaveChangesAsync()
                 .ConfigureAwait(false);
         }
 
         private async Task UpdateStartWorkExecuteAsync()
         {
-            if (DateTime.Today > WorkDate && !CurrentAccounting.IsClosed) return;
+            if (DateTime.Today > WorkDate && !FromHistory) return;
 
             if (StartWorkTime > EndWorkTime) EndWorkTime = StartWorkTime;
 
-            if (StartWorkTime == CurrentAccounting.StartWorkTime || CurrentAccounting.IsClosed) return;
+            if (StartWorkTime == _currentAccounting.StartWorkTime || _currentAccounting.IsClosed) return;
 
-            if (!CurrentAccounting.IsStarted) IsStarted = true;
+            if (!_currentAccounting.IsStarted) IsStarted = true;
 
-            CurrentAccounting.IsStarted = true;
-            CurrentAccounting.StartWorkTime = StartWorkTime;
-            _timeAccountingContext.Entry(CurrentAccounting).State = EntityState.Modified;
+            _currentAccounting.IsStarted = true;
+            _currentAccounting.StartWorkTime = StartWorkTime;
+            _timeAccountingContext.Entry(_currentAccounting).State = EntityState.Modified;
             await _timeAccountingContext.SaveChangesAsync()
                 .ConfigureAwait(false);
         }
@@ -207,31 +207,31 @@ namespace HowLong.ViewModels
                 return _isTimerStarted = false;
             }
 
-            if (!CurrentAccounting.IsStarted) return _isTimerStarted;
+            if (!_currentAccounting.IsStarted) return _isTimerStarted;
             var currentWorkTime = Breaks == null
                 ? (DateTime.Now.TimeOfDay - StartWorkTime).TotalMinutes + _workedTime
                 : (DateTime.Now.TimeOfDay - StartWorkTime).TotalMinutes
                   - Breaks.Sum(d => d.EndBreakTime - d.StartBreakTime) + _workedTime;
-                
-            CurrentOverWork = CurrentAccounting.IsWorking
+
+            CurrentOverWork = _currentAccounting.IsWorking
                 ? TimeSpan.FromMinutes(currentWorkTime - DateService.WorkingTime(DateTime.Now.DayOfWeek))
                 : TimeSpan.FromMinutes(currentWorkTime);
             var halfTime = TimeSpan.FromMinutes(currentWorkTime
                                                 - DateService.WorkingTime(DateTime.Now.DayOfWeek) / 2);
-                
+
             if (CurrentOverWork > default(TimeSpan)
                 && CurrentOverWork <= TimeSpan.FromSeconds(1)
-                && CurrentAccounting.IsWorking
+                && _currentAccounting.IsWorking
                 && _isTimerStarted)
                 ShowWorkingEndAsync();
-                
+
 
             if (halfTime > default(TimeSpan)
                 && halfTime <= TimeSpan.FromSeconds(1)
-                && CurrentAccounting.IsWorking
+                && _currentAccounting.IsWorking
                 && _isTimerStarted)
                 ShowWorkingHalfAsync();
-                
+
             TotalOverWork = CurrentOverWork + _totalDbOverWork;
             return _isTimerStarted;
         }
@@ -241,24 +241,24 @@ namespace HowLong.ViewModels
             if (WorkDate == DateTime.Today) return;
             IsEnable = false;
             await Task.Delay(100);
-            
-            if (!CurrentAccounting.IsStarted)
-                _timeAccountingContext.TimeAccounts.Remove(CurrentAccounting);
+
+            if (!_currentAccounting.IsStarted)
+                _timeAccountingContext.TimeAccounts.Remove(_currentAccounting);
             else
             {
-                CurrentAccounting.IsClosed = true;
-                CurrentAccounting.EndWorkTime = new TimeSpan(23, 59, 59);
+                _currentAccounting.IsClosed = true;
+                _currentAccounting.EndWorkTime = new TimeSpan(23, 59, 59);
 
-                if (CurrentAccounting.StartWorkTime > CurrentAccounting.EndWorkTime) CurrentAccounting.StartWorkTime = CurrentAccounting.EndWorkTime;
+                if (_currentAccounting.StartWorkTime > _currentAccounting.EndWorkTime) _currentAccounting.StartWorkTime = _currentAccounting.EndWorkTime;
 
                 var workTime = Breaks == null
-                                    ? (CurrentAccounting.EndWorkTime - CurrentAccounting.StartWorkTime).TotalMinutes
-                                    : (CurrentAccounting.EndWorkTime - CurrentAccounting.StartWorkTime).TotalMinutes
+                                    ? (_currentAccounting.EndWorkTime - _currentAccounting.StartWorkTime).TotalMinutes
+                                    : (_currentAccounting.EndWorkTime - _currentAccounting.StartWorkTime).TotalMinutes
                                     - Breaks.Sum(d => d.EndBreakTime - d.StartBreakTime);
-                CurrentAccounting.OverWork = CurrentAccounting.IsWorking
-                        ? workTime - DateService.WorkingTime(CurrentAccounting.WorkDate.DayOfWeek)
+                _currentAccounting.OverWork = _currentAccounting.IsWorking
+                        ? workTime - DateService.WorkingTime(_currentAccounting.WorkDate.DayOfWeek)
                         : workTime;
-                _timeAccountingContext.Entry(CurrentAccounting).State = EntityState.Modified;
+                _timeAccountingContext.Entry(_currentAccounting).State = EntityState.Modified;
                 DependencyService.Get<IShowNotify>()
                     .CancelAll();
             }
@@ -278,14 +278,14 @@ namespace HowLong.ViewModels
             await _timeAccountingContext.SaveChangesAsync()
                 .ConfigureAwait(false);
             UpdateAccount(currentAccounting);
-            
+
             await Task.Delay(100);
             IsEnable = true;
         }
 
         private void UpdateAccount(TimeAccount currentAccounting)
         {
-            CurrentAccounting = currentAccounting;
+            _currentAccounting = currentAccounting;
             _workedTime = 0;
             WorkDate = currentAccounting.WorkDate;
             _isTimerStarted = true;
@@ -295,7 +295,7 @@ namespace HowLong.ViewModels
             Breaks = currentAccounting.Breaks;
 
             EndWorkTime = currentAccounting.EndWorkTime;
-            if (!CurrentAccounting.IsClosed) InitializeAsync();
+            if (!FromHistory) InitializeAsync();
             _mainPage.UpdateWorkingDay();
         }
 
@@ -314,9 +314,7 @@ namespace HowLong.ViewModels
             IsEnable = false;
             await Task.Delay(100);
 
-            var isClosed = CurrentAccounting.IsClosed;
-
-            if (!isClosed)
+            if (!FromHistory)
             {
                 var result = await Application.Current.MainPage.DisplayAlert(
                 TranslationCodeExtension.GetTranslation("EndDayTitle"),
@@ -328,56 +326,57 @@ namespace HowLong.ViewModels
                     IsEnable = true;
                     return;
                 }
-                if (CurrentAccounting.IsWorking && CurrentAccounting.IsStarted)
+                if (_currentAccounting.IsWorking && _currentAccounting.IsStarted)
                     DependencyService.Get<IShowNotify>()
                         .CancelAll();
-                CurrentAccounting.EndWorkTime = DateTime.Now.TimeOfDay;
+                _currentAccounting.EndWorkTime = DateTime.Now.TimeOfDay;
             }
             if (StartWorkTime > EndWorkTime) StartWorkTime = EndWorkTime;
 
-            
-            if (isClosed)
+
+            if (_currentAccounting.IsClosed)
             {
                 var workTime = Breaks == null
                                     ? (EndWorkTime - StartWorkTime).TotalMinutes
                                     : (EndWorkTime - StartWorkTime).TotalMinutes
                                     - Breaks.Sum(d => d.EndBreakTime - d.StartBreakTime);
-                CurrentAccounting.OverWork = CurrentAccounting.IsWorking
-                        ? workTime - DateService.WorkingTime(CurrentAccounting.WorkDate.DayOfWeek)
+                _currentAccounting.OverWork = _currentAccounting.IsWorking
+                        ? workTime - DateService.WorkingTime(_currentAccounting.WorkDate.DayOfWeek)
                         : workTime;
 
-                CurrentAccounting.StartWorkTime = StartWorkTime;
-                CurrentAccounting.EndWorkTime = EndWorkTime;
-                _timeAccountingContext.Entry(CurrentAccounting).State = EntityState.Modified;
+                _currentAccounting.StartWorkTime = StartWorkTime;
+                _currentAccounting.EndWorkTime = EndWorkTime;
+                _timeAccountingContext.Entry(_currentAccounting).State = EntityState.Modified;
                 await _timeAccountingContext.SaveChangesAsync()
                     .ConfigureAwait(false);
 
-                if (CurrentAccounting.Breaks != null) _timeAccountingContext.Breaks.RemoveRange(CurrentAccounting.Breaks);
+                if (_currentAccounting.Breaks != null) _timeAccountingContext.Breaks.RemoveRange(_currentAccounting.Breaks);
 
                 if (Breaks != null) _timeAccountingContext.Breaks.AddRange(Breaks);
 
                 await _timeAccountingContext.SaveChangesAsync()
                         .ConfigureAwait(false);
 
-                _historyViewModel.UpdateElement(CurrentAccounting);
+                _historyViewModel.UpdateElement(_currentAccounting);
             }
             else
             {
                 var workTime = Breaks == null
-                                    ? (CurrentAccounting.EndWorkTime - CurrentAccounting.StartWorkTime).TotalMinutes
-                                    : (CurrentAccounting.EndWorkTime - CurrentAccounting.StartWorkTime).TotalMinutes
+                                    ? (_currentAccounting.EndWorkTime - _currentAccounting.StartWorkTime).TotalMinutes
+                                    : (_currentAccounting.EndWorkTime - _currentAccounting.StartWorkTime).TotalMinutes
                                     - Breaks.Sum(d => d.EndBreakTime - d.StartBreakTime);
-                CurrentAccounting.OverWork = CurrentAccounting.IsWorking
-                        ? workTime - DateService.WorkingTime(CurrentAccounting.WorkDate.DayOfWeek)
+                _currentAccounting.OverWork = _currentAccounting.IsWorking
+                        ? workTime - DateService.WorkingTime(_currentAccounting.WorkDate.DayOfWeek)
                         : workTime;
-                CurrentAccounting.IsClosed = true;
-                _timeAccountingContext.Entry(CurrentAccounting).State = EntityState.Modified;
+                _currentAccounting.IsClosed = true;
+                _timeAccountingContext.Entry(_currentAccounting).State = EntityState.Modified;
                 await _timeAccountingContext.SaveChangesAsync()
                     .ConfigureAwait(false);
+                if (FromHistory) await _historyViewModel.UpdateHistoryAsync();
             }
 
             CrossToastPopUp.Current.ShowCustomToast(
-                !isClosed
+                !FromHistory
                     ? TranslationCodeExtension.GetTranslation("DaySuccessEndedText")
                     : TranslationCodeExtension.GetTranslation("DaySuccessUpdatedText"), "#00AB00", "#FFFFFF");
 
@@ -404,17 +403,17 @@ namespace HowLong.ViewModels
                     }))
                 .SumAsync(g => g.First().DayOverWork)
                 .ConfigureAwait(false));
-            
-            CurrentOverWork = CurrentAccounting.IsWorking 
+
+            CurrentOverWork = _currentAccounting.IsWorking
                             ? TimeSpan.FromMinutes(_workedTime - DateService.WorkingTime(DateTime.Now.DayOfWeek))
-                            : TimeSpan.FromMinutes(_workedTime);   
-          
+                            : TimeSpan.FromMinutes(_workedTime);
+
             TotalOverWork = CurrentOverWork + _totalDbOverWork;
         }
 
         public void Subscribe()
         {
-            if (CurrentAccounting.IsClosed) return;
+            if (FromHistory) return;
             DependencyService.Get<IShowNotify>()
                 .CancelAll();
             _isTimerStarted = true;
@@ -423,7 +422,7 @@ namespace HowLong.ViewModels
         public void Unsubscribe()
         {
             _isTimerStarted = false;
-            if (CurrentAccounting.IsClosed || !CurrentAccounting.IsWorking || !CurrentAccounting.IsStarted ||
+            if (FromHistory || !_currentAccounting.IsWorking || !_currentAccounting.IsStarted ||
                 DateTime.Today != WorkDate) return;
             var currentWorkTime = Breaks == null
                 ? (DateTime.Now.TimeOfDay - StartWorkTime).TotalMinutes + _workedTime
@@ -435,10 +434,10 @@ namespace HowLong.ViewModels
             currentWorkTime = DateService.WorkingTime(DateTime.Now.DayOfWeek)
                               - currentWorkTime;
             if (halfTime > 0) DependencyService.Get<IShowNotify>()
-                .SetHalf(halfTime); 
+                .SetHalf(halfTime);
 
             if (currentWorkTime > 0) DependencyService.Get<IShowNotify>()
-                .SetEnd(currentWorkTime); 
+                .SetEnd(currentWorkTime);
         }
     }
 }

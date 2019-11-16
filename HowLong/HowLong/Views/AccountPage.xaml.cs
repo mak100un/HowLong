@@ -81,17 +81,17 @@ namespace HowLong.Views
                     .Subscribe(_ => MainLst.SelectedItem = null)
                     .DisposeWith(SubscriptionDisposables);
 
-                this.OneWayBind(ViewModel, vm => vm.CurrentAccounting.IsClosed, v => v.SaveBtn.Text, v => v
+                this.OneWayBind(ViewModel, vm => vm.FromHistory, v => v.SaveBtn.Text, v => v
                 ? TranslationCodeExtension.GetTranslation("SaveDayButton")
                 : TranslationCodeExtension.GetTranslation("EndDayButton"))
                 .DisposeWith(SubscriptionDisposables);
-                this.OneWayBind(ViewModel, vm => vm.CurrentAccounting.IsClosed, v => v.DateTitleSpn.Text, v => !v
+                this.OneWayBind(ViewModel, vm => vm.FromHistory, v => v.DateTitleSpn.Text, v => !v
                 ? TranslationCodeExtension.GetTranslation("CurrentDayText") + " "
                 : TranslationCodeExtension.GetTranslation("SelectedDayText") + " ")
                 .DisposeWith(SubscriptionDisposables);
-                this.OneWayBind(ViewModel, vm => vm.CurrentAccounting.IsClosed, v => v.EndStck.IsVisible)
+                this.OneWayBind(ViewModel, vm => vm.FromHistory, v => v.EndStck.IsVisible)
                 .DisposeWith(SubscriptionDisposables);
-                this.OneWayBind(ViewModel, vm => vm.CurrentAccounting.IsClosed, v => v.TimerGrid.IsVisible, OppositeConverter.BooleanConverterFunc)
+                this.OneWayBind(ViewModel, vm => vm.FromHistory, v => v.TimerGrid.IsVisible, OppositeConverter.BooleanConverterFunc)
                 .DisposeWith(SubscriptionDisposables);
             });
             ViewModel.Subscribe();

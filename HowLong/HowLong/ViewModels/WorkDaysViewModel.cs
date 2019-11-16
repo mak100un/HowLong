@@ -208,91 +208,77 @@ namespace HowLong.ViewModels
                     TranslationCodeExtension.GetTranslation("TimePickerText"),
                     TranslationCodeExtension.GetTranslation("OkText")));
             this.WhenAnyValue(x => x.MondayStart)
-                .Select(x => x)
                 .Subscribe(_ =>
                 {
                     if (MondayStart > MondayEnd) MondayEnd = MondayStart;
                 });
             this.WhenAnyValue(x => x.MondayEnd)
-                .Select(x => x)
                 .Subscribe(_ =>
                 {
                     if (MondayStart > MondayEnd) MondayStart = MondayEnd;
                 });
 
             this.WhenAnyValue(x => x.TuesdayStart)
-               .Select(x => x)
                .Subscribe(_ =>
                {
                    if (TuesdayStart > TuesdayEnd) TuesdayEnd = TuesdayStart;
                });
             this.WhenAnyValue(x => x.TuesdayEnd)
-                .Select(x => x)
                 .Subscribe(_ =>
                 {
                     if (TuesdayStart > TuesdayEnd) TuesdayStart = TuesdayEnd;
                 });
 
             this.WhenAnyValue(x => x.WednesdayStart)
-               .Select(x => x)
                .Subscribe(_ =>
                {
                    if (WednesdayStart > WednesdayEnd) WednesdayEnd = WednesdayStart;
                });
             this.WhenAnyValue(x => x.WednesdayEnd)
-                .Select(x => x)
                 .Subscribe(_ =>
                 {
                     if (WednesdayStart > WednesdayEnd) WednesdayStart = WednesdayEnd;
                 });
 
             this.WhenAnyValue(x => x.ThursdayStart)
-               .Select(x => x)
                .Subscribe(_ =>
                {
                    if (ThursdayStart > ThursdayEnd) ThursdayEnd = ThursdayStart;
                });
             this.WhenAnyValue(x => x.ThursdayEnd)
-                .Select(x => x)
                 .Subscribe(_ =>
                 {
                     if (ThursdayStart > ThursdayEnd) ThursdayStart = ThursdayEnd;
                 });
 
             this.WhenAnyValue(x => x.FridayStart)
-               .Select(x => x)
                .Subscribe(_ =>
                {
                    if (FridayStart > FridayEnd) FridayEnd = FridayStart;
                });
             this.WhenAnyValue(x => x.FridayEnd)
-                .Select(x => x)
                 .Subscribe(_ =>
                 {
                     if (FridayStart > FridayEnd) FridayStart = FridayEnd;
                 });
 
             this.WhenAnyValue(x => x.SaturdayStart)
-               .Select(x => x)
                .Subscribe(_ =>
                {
                    if (SaturdayStart > SaturdayEnd) SaturdayEnd = SaturdayStart;
                });
             this.WhenAnyValue(x => x.SaturdayEnd)
-                .Select(x => x)
                 .Subscribe(_ =>
                 {
                     if (SaturdayStart > SaturdayEnd) SaturdayStart = SaturdayEnd;
                 });
 
             this.WhenAnyValue(x => x.SundayStart)
-               .Select(x => x)
                .Subscribe(_ =>
                {
                    if (SundayStart > SundayEnd) SundayEnd = SundayStart;
                });
             this.WhenAnyValue(x => x.SundayEnd)
-                .Select(x => x)
                 .Subscribe(_ =>
                 {
                     if (SundayStart > SundayEnd) SundayStart = SundayEnd;

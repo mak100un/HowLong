@@ -6,13 +6,48 @@ using System.Reactive.Linq;
 using HowLong.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Threading.Tasks;
 
 namespace HowLong.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HistoryPage
     {
-        public HistoryPage() => InitializeComponent();
+        private double _previousY;
+        private string _action;
+
+        public HistoryPage()
+        {
+            InitializeComponent();
+            InitHandlers();
+            DayPicker.Date = DateTime.Today;
+        }
+
+        private void InitHandlers()
+        {
+            Observable.FromEventPattern<ScrolledEventArgs>(
+                h => MainLst.Scrolled += h,
+                h => MainLst.Scrolled -= h)
+                .Select(x => x.EventArgs)
+                 .Subscribe(async _ =>
+                        await Task.Run(() =>
+                        {
+                            if (_previousY < _.ScrollY) Device.BeginInvokeOnMainThread(() => CreateBtn.Hide());
+                            else if (_previousY > _.ScrollY) Device.BeginInvokeOnMainThread(() => CreateBtn.Show());
+                            _previousY = _.ScrollY;
+                        })
+                    );
+            this.WhenAnyValue(x=>x.DayPicker.Date)
+                .Where(x=>!_action.IsNullOrEmptyOrWhiteSpace()
+                && _action != TranslationCodeExtension.GetTranslation("CancelAction")
+                && x != DateTime.Today)
+                 .Subscribe(_ =>
+                 {
+                     DayPicker.Date = DateTime.Today;
+                     ViewModel.AddDayExecute(_, _action);
+                 });
+            CreateBtn.Clicked = async (s, e) => await CreateDayExecute();
+        }
 
         protected override void OnAppearing()
         {
@@ -57,6 +92,25 @@ namespace HowLong.Views
                 this.OneWayBind(ViewModel, vm => vm.IsEnable, v => v.MainRlt.IsEnabled)
                 .DisposeWith(SubscriptionDisposables);
             });
+        }
+
+
+        private async Task CreateDayExecute()
+        {
+            ViewModel.IsEnable = false;
+            await Task.Delay(100);
+            _action = await Application.Current.MainPage.DisplayActionSheet(
+                TranslationCodeExtension.GetTranslation("SelectDayAction"),
+                TranslationCodeExtension.GetTranslation("CancelAction"),
+                null,
+                TranslationCodeExtension.GetTranslation("MissedDayAction"),
+                TranslationCodeExtension.GetTranslation("WeekendAction"),
+                TranslationCodeExtension.GetTranslation("WeekdayAction"));
+            if (!_action.IsNullOrEmptyOrWhiteSpace()
+                && _action != TranslationCodeExtension.GetTranslation("CancelAction")) 
+                DayPicker.Focus();
+            await Task.Delay(50);
+            ViewModel.IsEnable = true;
         }
     }
 }

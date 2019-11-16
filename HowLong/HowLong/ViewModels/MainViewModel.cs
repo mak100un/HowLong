@@ -20,7 +20,7 @@ namespace HowLong.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly Func<HistoryViewModel> _historyFactory;
-        private readonly Func<TimeAccount, double, AccountViewModel> _accountFactory;
+        private readonly Func<TimeAccount, double, bool, AccountViewModel> _accountFactory;
         private readonly Func<SettingsViewModel> _settingsFactory;
         private readonly TimeAccountingContext _timeAccountingContext;
         public ReactiveCommand<Unit, Unit> HistoryCommand { get; internal set; }
@@ -33,7 +33,7 @@ namespace HowLong.ViewModels
             INavigationService navigationService,
             TimeAccountingContext timeAccountingContext,
             Func<SettingsViewModel> settingsFactory,
-            Func<TimeAccount, double, AccountViewModel> accountFactory,
+            Func<TimeAccount, double, bool, AccountViewModel> accountFactory,
             Func<HistoryViewModel> historyFactory
         )
         {
@@ -87,7 +87,7 @@ namespace HowLong.ViewModels
                     );
                 await _navigationService.NavigateToAsync
                 (
-                    _accountFactory(currentAccounting, workedTime)
+                    _accountFactory(currentAccounting, workedTime, false)
                 );
                 await Task.Delay(150);
                 IsEnable = true;
@@ -109,53 +109,30 @@ namespace HowLong.ViewModels
                 await Task.Delay(50);
             }
             var previousAccount = await _timeAccountingContext.TimeAccounts
+                .Include(x => x.Breaks)
                 .OrderByDescending(x=>x.WorkDate)
-                .FirstOrDefaultAsync(x => x.WorkDate < currentDate)
+                .FirstOrDefaultAsync(x => x.WorkDate < currentDate && !x.IsClosed)
                 .ConfigureAwait(false);
             if (previousAccount != null && workedTime <= default(double))
             {
-                for (var i = previousAccount.WorkDate.AddDays(1); i < currentDate; i = i.AddDays(1))
+                if (previousAccount.IsStarted)
                 {
-                    if (DateService.IsWorking(i.DayOfWeek))
-                        _timeAccountingContext.TimeAccounts.Add(
-                            new TimeAccount
-                            {
-                                WorkDate = i,
-                                IsWorking = true,
-                                StartWorkTime = DateService.StartWorkTime(i.DayOfWeek),
-                                EndWorkTime = DateService.StartWorkTime(i.DayOfWeek),
-                                IsClosed = true,
-                                IsStarted = true,
-                                OverWork = - DateService.WorkingTime(i.DayOfWeek)
-                            });
+                    previousAccount.IsClosed = true;
+                    previousAccount.EndWorkTime = new TimeSpan(23, 59, 59);
+
+                    if (previousAccount.StartWorkTime > previousAccount.EndWorkTime) previousAccount.StartWorkTime = previousAccount.EndWorkTime;
+
+                    var workTime = previousAccount.Breaks == null
+                        ? (previousAccount.EndWorkTime - previousAccount.StartWorkTime).TotalMinutes
+                        : (previousAccount.EndWorkTime - previousAccount.StartWorkTime).TotalMinutes
+                            - previousAccount.Breaks.Sum(d => d.EndBreakTime - d.StartBreakTime);
+                    previousAccount.OverWork = previousAccount.IsWorking
+                        ? workTime - DateService.WorkingTime(previousAccount.WorkDate.DayOfWeek)
+                        : workTime;
+                    _timeAccountingContext.Entry(previousAccount).State = EntityState.Modified;
                 }
-
-                var lastAccount = await _timeAccountingContext.TimeAccounts
-                    .Include(x => x.Breaks)
-                    .FirstOrDefaultAsync(x=>x.WorkDate == previousAccount.WorkDate && !x.IsClosed)
-                    .ConfigureAwait(false);
-
-                if (lastAccount != null)
-                {
-                    if (lastAccount.IsStarted)
-                    {
-                        lastAccount.IsClosed = true;
-                        lastAccount.EndWorkTime = new TimeSpan(23, 59, 59);
-
-                        if (lastAccount.StartWorkTime > lastAccount.EndWorkTime) lastAccount.StartWorkTime = lastAccount.EndWorkTime;
-
-                        var workTime = lastAccount.Breaks == null
-                            ? (lastAccount.EndWorkTime - lastAccount.StartWorkTime).TotalMinutes
-                            : (lastAccount.EndWorkTime - lastAccount.StartWorkTime).TotalMinutes
-                              - lastAccount.Breaks.Sum(d => d.EndBreakTime - d.StartBreakTime);
-                        lastAccount.OverWork = lastAccount.IsWorking
-                            ? workTime - DateService.WorkingTime(lastAccount.WorkDate.DayOfWeek)
-                            : workTime;
-                        _timeAccountingContext.Entry(lastAccount).State = EntityState.Modified;
-                    }
-                    else _timeAccountingContext.TimeAccounts.Remove(lastAccount);
-                }
-
+                else _timeAccountingContext.TimeAccounts.Remove(previousAccount);
+                
                 await _timeAccountingContext.SaveChangesAsync()
                     .ConfigureAwait(false);
             }
@@ -181,7 +158,7 @@ namespace HowLong.ViewModels
 
             await _navigationService.NavigateToAsync
                 (
-                _accountFactory(currentAccounting, workedTime)
+                _accountFactory(currentAccounting, workedTime, false)
                 );
 
             await Task.Delay(150);

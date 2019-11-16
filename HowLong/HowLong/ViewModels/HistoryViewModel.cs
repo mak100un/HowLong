@@ -10,6 +10,7 @@ using HowLong.Data;
 using HowLong.Extensions;
 using HowLong.Models;
 using HowLong.Navigation;
+using HowLong.Services;
 using Microsoft.EntityFrameworkCore;
 using Plugin.Toast;
 using ReactiveUI;
@@ -20,7 +21,7 @@ namespace HowLong.ViewModels
 {
     public class HistoryViewModel : ViewModelBase
     {
-        private readonly Func<TimeAccount, double, AccountViewModel> _accountFactory;
+        private readonly Func<TimeAccount, double, bool, AccountViewModel> _accountFactory;
         private readonly TimeAccountingContext _timeAccountingContext;
         private readonly INavigationService _navigationService;
 
@@ -36,6 +37,8 @@ namespace HowLong.ViewModels
         public bool NoElements { get; set; }
 
         public ReactiveCommand<HistoryAccount, Unit> NavigateToAccountCommand { get; }
+        public ReactiveCommand<Unit, Unit> CreateDayCommand { get; internal set; }
+
         public ICommand RefreshCommand =>
             new Command(async () =>
             {
@@ -44,11 +47,13 @@ namespace HowLong.ViewModels
                 IsRefreshing = false;
             });
 
+        public ICommand AddDayCommand { get; internal set; }
+
         public HistoryViewModel
         (
             INavigationService navigationService,
             TimeAccountingContext timeAccountingContext,
-            Func<TimeAccount, double, AccountViewModel> accountFactory
+            Func<TimeAccount, double, bool, AccountViewModel> accountFactory
         )
         {
             _accountFactory = accountFactory;
@@ -62,16 +67,98 @@ namespace HowLong.ViewModels
             this.WhenAnyValue(x => x.SelectedAccount)
                 .Skip(1)
                 .Where(x => x != null)
-                .Select(x => x)
                 .InvokeCommand(NavigateToAccountCommand);
 
             this.WhenAnyValue(x => x.AllAccounts)
                 .Skip(1)
                 .Where(x => x != null)
-                .Select(x => x)
                 .Subscribe(UpdateTotalOverWork);
         }
 
+        internal async void AddDayExecute(DateTime date, string _action)
+        {
+            IsEnable = false;
+            await Task.Delay(100);
+            var notClosedAccounts = await _timeAccountingContext.TimeAccounts
+                .Include(x => x.Breaks)
+                .Where(x => !x.IsClosed
+                && x.WorkDate != DateTime.Today)
+                .ToArrayAsync()
+                .ConfigureAwait(false); // Can be if user change date on the device
+            if (notClosedAccounts.Length != 0)
+            {
+                foreach (var notClosedAccount in notClosedAccounts)
+                {
+                    if (notClosedAccount.Breaks.Count != 0) _timeAccountingContext.Breaks.RemoveRange(notClosedAccount.Breaks);
+                    _timeAccountingContext.TimeAccounts.Remove(notClosedAccount);
+                }
+            }
+            await _timeAccountingContext.SaveChangesAsync()
+                .ConfigureAwait(false);
+            if (await _timeAccountingContext.TimeAccounts.AnyAsync(x=>x.WorkDate == date && x.IsClosed))
+            {
+                var result = await Application.Current.MainPage.DisplayAlert(
+                    TranslationCodeExtension.GetTranslation("DayExistTitle"),
+                    TranslationCodeExtension.GetTranslation("DayExistText"),
+                    TranslationCodeExtension.GetTranslation("YesAddDayText"),
+                    TranslationCodeExtension.GetTranslation("NoText"));
+                if (!result)
+                {
+                    IsEnable = true;
+                    return;
+                }
+            }
+            if (_action == TranslationCodeExtension.GetTranslation("MissedDayAction"))
+            {
+                _timeAccountingContext.TimeAccounts.Add(
+                    new TimeAccount
+                    {
+                        WorkDate = date,
+                        IsWorking = DateService.IsWorking(date.DayOfWeek),
+                        StartWorkTime = DateService.StartWorkTime(date.DayOfWeek),
+                        EndWorkTime = DateService.StartWorkTime(date.DayOfWeek),
+                        IsClosed = true,
+                        IsStarted = true,
+                        OverWork = DateService.IsWorking(date.DayOfWeek)
+                        ? -DateService.WorkingTime(date.DayOfWeek)
+                        : 0
+                    });
+                await _timeAccountingContext.SaveChangesAsync()
+                    .ConfigureAwait(false);
+                await UpdateHistoryAsync();
+            }
+            else
+            {
+                var workedTime = await _timeAccountingContext.TimeAccounts.Where(x => x.WorkDate == date && x.IsClosed)
+                   .SumAsync(v => v.Breaks == null
+                                   ? (v.EndWorkTime - v.StartWorkTime).TotalMinutes
+                                   : (v.EndWorkTime - v.StartWorkTime).TotalMinutes
+                                   - v.Breaks.Sum(d => d.EndBreakTime - d.StartBreakTime))
+                   .ConfigureAwait(false);
+
+                var newAccounting = new TimeAccount
+                {
+                    WorkDate = date,
+                    IsWorking = _action != TranslationCodeExtension.GetTranslation("WeekendAction"),
+                    IsStarted = true 
+                };
+                _timeAccountingContext.TimeAccounts.Add(newAccounting);
+                await _timeAccountingContext.SaveChangesAsync()
+                    .ConfigureAwait(false);
+
+                await _navigationService.NavigateToAsync
+                    (
+                    _accountFactory
+                        (
+                            newAccounting,
+                            workedTime,
+                            true
+                        )
+                    );
+            }
+            await Task.Delay(50);
+            IsEnable = true;
+        }
 
         private void UpdateTotalOverWork(ObservableCollection<Grouping<(int, int), HistoryAccount>> accounts) =>
             TotalOverWork = TimeSpan.FromMinutes(accounts.SelectMany(x => x)
@@ -90,7 +177,12 @@ namespace HowLong.ViewModels
                 TranslationCodeExtension.GetTranslation("DeleteAction"));
             if (action == TranslationCodeExtension.GetTranslation("EditAction")) await _navigationService.NavigateToAsync
                     (
-                _accountFactory(arg.TimeAccount, 0)
+                _accountFactory
+                    (
+                        arg.TimeAccount,
+                        0,
+                        true
+                    )
                     );
             if (action == TranslationCodeExtension.GetTranslation("DeleteAction"))
             {

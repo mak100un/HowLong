@@ -171,6 +171,12 @@
   <data name="DayEndedTitle" xml:space="preserve">
     <value>День окончен!</value>
   </data>
+  <data name="DayExistText" xml:space="preserve">
+    <value>Учётный день с данным числом был ранее добавлен в систему. Вы уверены, что хотите добавить новый?</value>
+  </data>
+  <data name="DayExistTitle" xml:space="preserve">
+    <value>День существует</value>
+  </data>
   <data name="DayIsOverText" xml:space="preserve">
     <value>Поздравляем, вы успешно отработали рабочую норму текущего дня👏</value>
   </data>
@@ -297,6 +303,9 @@
   <data name="MessageToSupport" xml:space="preserve">
     <value>Сообщение в поддержку</value>
   </data>
+  <data name="MissedDayAction" xml:space="preserve">
+    <value>Пропущенный день</value>
+  </data>
   <data name="MondayShortText" xml:space="preserve">
     <value>Пн</value>
   </data>
@@ -365,6 +374,9 @@
   </data>
   <data name="SelectAction" xml:space="preserve">
     <value>Выберите действие</value>
+  </data>
+  <data name="SelectDayAction" xml:space="preserve">
+    <value>Выберите тип дня</value>
   </data>
   <data name="SelectedDayText" xml:space="preserve">
     <value>Выбранный день:</value>
@@ -435,6 +447,9 @@
   <data name="WednesdayText" xml:space="preserve">
     <value>Среда</value>
   </data>
+  <data name="WeekdayAction" xml:space="preserve">
+    <value>Рабочий</value>
+  </data>
   <data name="WeekdaysButton" xml:space="preserve">
     <value>Рабочие дни</value>
   </data>
@@ -443,6 +458,9 @@
   </data>
   <data name="WeekdayText" xml:space="preserve">
     <value>Рабочий</value>
+  </data>
+  <data name="WeekendAction" xml:space="preserve">
+    <value>Выходной</value>
   </data>
   <data name="WeekendAlertText" xml:space="preserve">
     <value>Вы уверены, что хотите выйти на работу в выходной? Отработанное сегодня время будет отражено в качестве переработки</value>
@@ -461,6 +479,9 @@
   </data>
   <data name="WorkText" xml:space="preserve">
     <value>Работа: </value>
+  </data>
+  <data name="YesAddDayText" xml:space="preserve">
+    <value>Да, добавить</value>
   </data>
   <data name="YesClearHistoryText" xml:space="preserve">
     <value>Да, очистить</value>

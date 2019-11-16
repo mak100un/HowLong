@@ -20,13 +20,14 @@
     <PackageReference Include="ReactiveUI.Events.XamForms" Version="10.5.7" />
     <PackageReference Include="ReactiveUI.Fody" Version="10.5.7" />
     <PackageReference Include="ReactiveUI.XamForms" Version="10.5.7" />
+    <PackageReference Include="Refractored.FloatingActionButtonForms" Version="2.1.0" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xam.Plugin.LatestVersion" Version="1.1.2" />
     <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xam.Plugins.Vibrate" Version="4.0.0.5" />
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991211" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
 

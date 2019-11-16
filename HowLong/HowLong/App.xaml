@@ -6,6 +6,8 @@
              mc:Ignorable="d"
              x:Class="HowLong.App">
     <Application.Resources>
+        <Color x:Key="SecondaryHelpColor">#1DCCD1</Color>
+        <Color x:Key="SecondaryColor">#00CCCC</Color>
         <Color x:Key="AgreeColor">#00AB00</Color>
         <Color x:Key="ChatColor">#FF8F00</Color>
         <Color x:Key="LightBlueColor">#D4E3EE</Color>

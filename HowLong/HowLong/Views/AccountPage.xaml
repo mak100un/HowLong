@@ -210,8 +210,8 @@
             <ActivityIndicator x:Name="LoadingIndic"
                                RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-35}"
                                RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-35}"
-                               RelativeLayout.WidthConstraint="70"
-                               RelativeLayout.HeightConstraint="70"
+                               RelativeLayout.WidthConstraint="60"
+                               RelativeLayout.HeightConstraint="60"
                                Color="{StaticResource PrimaryBlueColor}"/>
             <reactive:ShadowView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
                                  RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
