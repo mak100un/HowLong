@@ -66,6 +66,7 @@ namespace HowLong.ViewModels
             TimeAccountingContext timeAccountingContext
         )
         {
+            ShouldInit = true;
             FromHistory = fromHistory;
             _timeAccountingContext = timeAccountingContext;
             _mainPage = mainPage;
@@ -90,8 +91,9 @@ namespace HowLong.ViewModels
             EndWorkTime = currentAccounting.EndWorkTime;
             WorkDate = currentAccounting.WorkDate;
 
-            if (!FromHistory) InitializeAsync();
-
+            if (!FromHistory)
+                InitializationCommand = ReactiveCommand.CreateFromTask(InitializeAsync);
+        
             StartWorkCommand = ReactiveCommand.Create(() => StartWorkTime = DateTime.Now.TimeOfDay);
             EndWorkCommand = ReactiveCommand.Create(() => EndWorkTime = DateTime.Now.TimeOfDay);
             AddBreakCommand = ReactiveCommand.CreateFromTask(AddBreakExecuteAsync);
@@ -118,6 +120,7 @@ namespace HowLong.ViewModels
                 .Skip(1)
                 .Where(x => x != null)
                 .InvokeCommand(DeleteBreakCommand);
+            Initialize = true;
         }
 
         private static async Task CurrentExecuteAsync() => await Application.Current.MainPage.DisplayAlert(
@@ -295,7 +298,11 @@ namespace HowLong.ViewModels
             Breaks = currentAccounting.Breaks;
 
             EndWorkTime = currentAccounting.EndWorkTime;
-            if (!FromHistory) InitializeAsync();
+            if (!FromHistory)
+            {
+                Initialize = false;
+                Initialize = true;
+            }
             _mainPage.UpdateWorkingDay();
         }
 
@@ -372,7 +379,6 @@ namespace HowLong.ViewModels
                 _timeAccountingContext.Entry(_currentAccounting).State = EntityState.Modified;
                 await _timeAccountingContext.SaveChangesAsync()
                     .ConfigureAwait(false);
-                if (FromHistory) await _historyViewModel.UpdateHistoryAsync();
             }
 
             CrossToastPopUp.Current.ShowCustomToast(
@@ -384,7 +390,7 @@ namespace HowLong.ViewModels
             IsEnable = true;
         }
 
-        private async void InitializeAsync()
+        private async Task InitializeAsync()
         {
             _totalDbOverWork = TimeSpan.FromMinutes(await _timeAccountingContext.TimeAccounts.Where(x => x.WorkDate < WorkDate && x.IsClosed)
                 .Include(x => x.Breaks)

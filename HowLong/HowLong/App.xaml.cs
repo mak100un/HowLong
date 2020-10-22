@@ -26,10 +26,9 @@ namespace HowLong
             var navigationPage = new NavigationPage(mainPage);
             MainPage = navigationPage;
             CompositionRoot.Resolve<INavigationService>().SetNavigation(navigationPage.Navigation);
-            CheckVersionAsync();
         }
 
-        private static async void CheckVersionAsync()
+        /*private static async void CheckVersionAsync()
         {
             try
             {
@@ -61,7 +60,7 @@ namespace HowLong
                 //
             }
             
-        }
+        }*/
 
         protected override void OnSleep() =>
             (Current.MainPage.Navigation.NavigationStack[Current.MainPage.Navigation.NavigationStack.Count - 1]

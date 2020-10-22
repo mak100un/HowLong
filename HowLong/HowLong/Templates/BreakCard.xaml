@@ -27,7 +27,7 @@
                                   BackgroundColor="{StaticResource ChatColor}"
                                   TextColor="{DynamicResource PrimaryDarkColor}"
                                   Text="{extensions:Translate BreakStartButton}"/>
-            <TimePicker Format="T"
+            <TimePicker Format="HH:mm"
                         x:Name="StartDinnerTmPck"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
@@ -47,7 +47,7 @@
                                   BackgroundColor="{StaticResource ChatColor}"
                                   TextColor="{DynamicResource PrimaryDarkColor}"
                                   Text="{extensions:Translate BreakEndButton}"/>
-            <TimePicker Format="T"
+            <TimePicker Format="HH:mm"
                         x:Name="EndDinnerTmPck"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"

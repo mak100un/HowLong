@@ -73,12 +73,12 @@ namespace HowLong.ViewModels
                 .Include(x => x.Breaks)
                 .SingleOrDefaultAsync(x => x.WorkDate == currentDate && !x.IsClosed)
                 .ConfigureAwait(false);
-            var workedTime = await _timeAccountingContext.TimeAccounts.Where(x => x.WorkDate == currentDate && x.IsClosed)
-                    .SumAsync(v => v.Breaks == null
+            var todayWorks = await _timeAccountingContext.TimeAccounts.Where(x => x.WorkDate == currentDate && x.IsClosed).ToArrayAsync();
+            var workedTime = todayWorks?.Sum(v => v.Breaks == null
                                     ? (v.EndWorkTime - v.StartWorkTime).TotalMinutes
                                     : (v.EndWorkTime - v.StartWorkTime).TotalMinutes
                                     - v.Breaks.Sum(d => d.EndBreakTime - d.StartBreakTime))
-                    .ConfigureAwait(false);
+                    ?? 0;
             if (currentAccounting != null)
             {
                 currentAccounting.Breaks = new ObservableCollection<Break>
@@ -157,9 +157,9 @@ namespace HowLong.ViewModels
                 .ConfigureAwait(false);
 
             await _navigationService.NavigateToAsync
-                (
+            (
                 _accountFactory(currentAccounting, workedTime, false)
-                );
+            );
 
             await Task.Delay(150);
             IsEnable = true;
@@ -171,7 +171,6 @@ namespace HowLong.ViewModels
             await Task.Delay(100);
             var history = _historyFactory();
             await Task.Delay(300);
-            await history.UpdateHistoryAsync();
             await _navigationService.NavigateToAsync
                     (
                        history

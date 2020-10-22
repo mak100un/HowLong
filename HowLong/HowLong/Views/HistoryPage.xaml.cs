@@ -37,10 +37,11 @@ namespace HowLong.Views
                             _previousY = _.ScrollY;
                         })
                     );
-            this.WhenAnyValue(x=>x.DayPicker.Date)
-                .Where(x=>!_action.IsNullOrEmptyOrWhiteSpace()
+            this.WhenAnyValue(x=>x.DayPicker.SelectedDate)
+                .Where(x=> !_action.IsNullOrEmptyOrWhiteSpace()
                 && _action != TranslationCodeExtension.GetTranslation("CancelAction")
-                && x != DateTime.Today)
+                && x.HasValue)
+                .Select(x => x.Value)
                  .Subscribe(_ =>
                  {
                      DayPicker.Date = DateTime.Today;

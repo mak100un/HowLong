@@ -1,141 +1,206 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<reactive:ContentPageBase xmlns:reactive="clr-namespace:HowLong.Extensions"
-                          x:TypeArguments="localvm:HistoryViewModel"
-                          xmlns:extensions="clr-namespace:HowLong.Extensions;assembly=HowLong"
-                          xmlns="http://xamarin.com/schemas/2014/forms"
-                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                          xmlns:localvm="clr-namespace:HowLong.ViewModels"
-                          xmlns:converters="clr-namespace:HowLong.Converters"
-                          xmlns:templates="clr-namespace:HowLong.Templates"
-                          xmlns:fabControl="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
-                          mc:Ignorable="d"
-                          BackgroundColor="{DynamicResource PrimaryLightColor}"
-                          x:Class="HowLong.Views.HistoryPage">
+<reactive:ContentPageBase
+    x:Class="HowLong.Views.HistoryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:HowLong.Controls"
+    xmlns:converters="clr-namespace:HowLong.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:extensions="clr-namespace:HowLong.Extensions;assembly=HowLong"
+    xmlns:fabControl="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
+    xmlns:localvm="clr-namespace:HowLong.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:reactive="clr-namespace:HowLong.Extensions"
+    xmlns:templates="clr-namespace:HowLong.Templates"
+    x:TypeArguments="localvm:HistoryViewModel"
+    BackgroundColor="{DynamicResource PrimaryLightColor}"
+    mc:Ignorable="d">
     <NavigationPage.TitleView>
-        <extensions:BaseTitleView/>
+        <extensions:BaseTitleView />
     </NavigationPage.TitleView>
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:TimeAccountHeaderConverter x:Key="TimeAccountHeaderConverter"/>
+            <converters:TimeAccountHeaderConverter x:Key="TimeAccountHeaderConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <RelativeLayout x:Name="MainRlt"
-                        BackgroundColor="Transparent"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand">
-            <DatePicker x:Name="DayPicker"
-                        Format="D"
-                        IsEnabled="False"
-                        IsVisible="False"/>
-            <Grid RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
-                  RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
-                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
-                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
-                  HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand"
-                  RowSpacing="0"
-                  ColumnSpacing="0">
+        <RelativeLayout
+            x:Name="MainRlt"
+            BackgroundColor="Transparent"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <controls:SelectableDatePicker
+                x:Name="DayPicker"
+                Format="D"
+                IsEnabled="False"
+                IsVisible="False" />
+            <Grid
+                ColumnSpacing="0"
+                HorizontalOptions="FillAndExpand"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=1,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0,
+                                                                  Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=0,
+                                                                  Constant=0}"
+                RowSpacing="0"
+                VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <ListView x:Name="MainLst"
-                          Grid.Row="0"
-                          Grid.Column="0"
-                          CachingStrategy="RetainElement"
-                          SeparatorVisibility="Default"
-                          SeparatorColor="{StaticResource PrimaryBlueColor}"
-                          HasUnevenRows="True"
-                          IsGroupingEnabled="True"
-                          IsPullToRefreshEnabled="True"
-                          RefreshCommand="{Binding RefreshCommand}"
-                          IsRefreshing="{Binding IsRefreshing}">
+                <ListView
+                    x:Name="MainLst"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    CachingStrategy="RetainElement"
+                    HasUnevenRows="True"
+                    IsGroupingEnabled="True"
+                    IsPullToRefreshEnabled="True"
+                    IsRefreshing="{Binding IsRefreshing}"
+                    RefreshCommand="{Binding RefreshCommand}"
+                    SeparatorColor="{StaticResource PrimaryBlueColor}"
+                    SeparatorVisibility="Default">
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Padding="12,6">
-                                    <reactive:LightLabel HorizontalOptions="StartAndExpand"
-                                                         VerticalOptions="Center"
-                                                         FontSize="Medium"
-                                                         TextColor="{StaticResource PrimaryBlueColor}"
-                                                         Text="{Binding Key, Converter={StaticResource TimeAccountHeaderConverter}}"/>
+                                    <reactive:LightLabel
+                                        FontSize="Medium"
+                                        HorizontalOptions="StartAndExpand"
+                                        Text="{Binding Key, Converter={StaticResource TimeAccountHeaderConverter}}"
+                                        TextColor="{StaticResource PrimaryBlueColor}"
+                                        VerticalOptions="Center" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.GroupHeaderTemplate>
                     <ListView.Header>
-                        <StackLayout HorizontalOptions="FillAndExpand"
-                                     VerticalOptions="Start"
-                                     Padding="12">
-                            <reactive:LightLabel HorizontalOptions="Start"
-                                                 VerticalOptions="Center"
-                                                 FontSize="Title"
-                                                 Text="{extensions:Translate HistoryText}"
-                                                 TextColor="{StaticResource VehicleBlueColor}"/>
+                        <StackLayout
+                            Padding="12"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start">
+                            <reactive:LightLabel
+                                FontSize="Title"
+                                HorizontalOptions="Start"
+                                Text="{extensions:Translate HistoryText}"
+                                TextColor="{StaticResource VehicleBlueColor}"
+                                VerticalOptions="Center" />
                         </StackLayout>
                     </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <templates:AccountCard/>
+                            <templates:AccountCard />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <ListView.Footer>
                         <StackLayout Padding="6">
                             <StackLayout HorizontalOptions="CenterAndExpand">
-                                <reactive:LightLabel x:Name = "NoElementsLbl"
-                                                     Text ="{extensions:Translate EmptyHistoryText}"
-                                                     FontSize="Small"
-                                                     VerticalOptions="Start"
-                                                     TextColor="{DynamicResource PrimaryDarkColor}"
-                                                     HorizontalOptions="Start"/>
+                                <reactive:LightLabel
+                                    x:Name="NoElementsLbl"
+                                    FontSize="Small"
+                                    HorizontalOptions="Start"
+                                    Text="{extensions:Translate EmptyHistoryText}"
+                                    TextColor="{DynamicResource PrimaryDarkColor}"
+                                    VerticalOptions="Start" />
                             </StackLayout>
                         </StackLayout>
                     </ListView.Footer>
                 </ListView>
-                <StackLayout Grid.Row="1"
-                             Grid.Column="0"
-                             Orientation="Horizontal"
-                             HorizontalOptions="FillAndExpand"
-                             VerticalOptions="EndAndExpand"
-                             Spacing="6"
-                             Padding="15">
-                    <reactive:LightLabel HorizontalOptions="EndAndExpand"
-                                         VerticalOptions="Center"
-                                         FontSize="Medium"
-                                         x:Name="OverWorkTitleLbl"
-                                         TextColor="{StaticResource PrimaryBlueColor}"/>
-                    <reactive:RegularLabel HorizontalOptions="End"
-                                           VerticalOptions="Center"
-                                           FontSize="Medium"
-                                           x:Name="TotalOverWorkLbl"/>
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Padding="15"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="6"
+                    VerticalOptions="EndAndExpand">
+                    <reactive:LightLabel
+                        x:Name="OverWorkTitleLbl"
+                        FontSize="Medium"
+                        HorizontalOptions="EndAndExpand"
+                        TextColor="{StaticResource PrimaryBlueColor}"
+                        VerticalOptions="Center" />
+                    <reactive:RegularLabel
+                        x:Name="TotalOverWorkLbl"
+                        FontSize="Medium"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center" />
                 </StackLayout>
             </Grid>
-            <fabControl:FloatingActionButtonView x:Name="CreateBtn"
-                                             ImageName="plusImage.png"
-                                             ColorNormal="{StaticResource SecondaryColor}"
-                                             ColorPressed="{StaticResource SecondaryHelpColor}"
-                                             HasShadow="True"
-                                             RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-90}"
-                                             RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-140}"/>
-            <StackLayout x:Name="LoadingStck"
-                         BackgroundColor="{DynamicResource PrimaryLightColor}"
-                         RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
-                         RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
-                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
-                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"/>
-            <ActivityIndicator x:Name="LoadingIndic"
-                               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-35}"
-                               RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-35}"
-                               RelativeLayout.WidthConstraint="60"
-                               RelativeLayout.HeightConstraint="60"
-                               Color="{StaticResource PrimaryBlueColor}"/>
-            <reactive:ShadowView RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
-                                 RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
-                                 RelativeLayout.HeightConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.1, Constant=0}"
-                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"/>
+            <fabControl:FloatingActionButtonView
+                x:Name="CreateBtn"
+                ColorNormal="{StaticResource SecondaryColor}"
+                ColorPressed="{StaticResource SecondaryHelpColor}"
+                HasShadow="True"
+                ImageName="plusImage.png"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=1,
+                                                                  Constant=-90}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=1,
+                                                                  Constant=-140}" />
+            <StackLayout
+                x:Name="LoadingStck"
+                BackgroundColor="{DynamicResource PrimaryLightColor}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=1,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0,
+                                                                  Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=0,
+                                                                  Constant=0}" />
+            <ActivityIndicator
+                x:Name="LoadingIndic"
+                RelativeLayout.HeightConstraint="60"
+                RelativeLayout.WidthConstraint="60"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.5,
+                                                                  Constant=-35}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=0.5,
+                                                                  Constant=-35}"
+                Color="{StaticResource PrimaryBlueColor}" />
+            <reactive:ShadowView
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=.1,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0,
+                                                                  Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=0,
+                                                                  Constant=0}" />
         </RelativeLayout>
     </ContentPage.Content>
-    </reactive:ContentPageBase>
+</reactive:ContentPageBase>

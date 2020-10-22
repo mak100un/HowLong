@@ -56,9 +56,11 @@ namespace HowLong.ViewModels
             Func<TimeAccount, double, bool, AccountViewModel> accountFactory
         )
         {
+            ShouldInit = true;
             _accountFactory = accountFactory;
             _timeAccountingContext = timeAccountingContext;
             _navigationService = navigationService;
+            InitializationCommand = ReactiveCommand.CreateFromTask(UpdateHistoryAsync);
             NavigateToAccountCommand = ReactiveCommand.CreateFromTask<HistoryAccount, Unit>(async _ =>
             {
                 await NavigateToAccountExecuteAsync(_);
@@ -73,6 +75,7 @@ namespace HowLong.ViewModels
                 .Skip(1)
                 .Where(x => x != null)
                 .Subscribe(UpdateTotalOverWork);
+            Initialize = true;
         }
 
         internal async void AddDayExecute(DateTime date, string _action)
@@ -140,6 +143,7 @@ namespace HowLong.ViewModels
                 {
                     WorkDate = date,
                     IsWorking = _action != TranslationCodeExtension.GetTranslation("WeekendAction"),
+                    IsClosed = true,
                     IsStarted = true 
                 };
                 _timeAccountingContext.TimeAccounts.Add(newAccounting);
@@ -273,7 +277,7 @@ namespace HowLong.ViewModels
             }
             UpdateTotalOverWork(AllAccounts);
         }
-        public async Task UpdateHistoryAsync()
+        private async Task UpdateHistoryAsync()
         {
             var allAccounts = await _timeAccountingContext.TimeAccounts.Where(x => x.IsClosed)
                 .Include(x => x.Breaks)
