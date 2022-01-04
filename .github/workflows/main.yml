@@ -8,6 +8,11 @@
 
 name: HowLong-CI
 
+env:
+  PROJECT_PATH: "HowLong/HowLong/HowLong.csproj"
+  CONFIGURATION: "Release"
+  COMMIT_FULL_NAME: "HowLong-${{ github.sha }}"
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
@@ -31,7 +36,9 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Clean Project
-      run: dotnet clean HowLong/HowLong/HowLong.csproj -c Release
+      run: |
+        echo "Before pipeline ${{ env.COMMIT_FULL_NAME }}"
+        dotnet clean ${{ env.PROJECT_PATH }} -c ${{ env.CONFIGURATION }}
 
   restore:
     # The type of runner that the job will run on
@@ -46,7 +53,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Restore nuget
-      run: nuget restore HowLong/HowLong/HowLong.csproj
+      run: nuget restore ${{ env.PROJECT_PATH }}
   
   build:
     # The type of runner that the job will run on
@@ -61,4 +68,6 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Build Project
-      run: dotnet build HowLong/HowLong/HowLong.csproj -c Release
+      run: |
+        nuget restore ${{ env.PROJECT_PATH }}
+        dotnet build ${{ env.PROJECT_PATH }} -c ${{ env.CONFIGURATION }} --no-restore
