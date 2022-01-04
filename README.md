@@ -3,7 +3,7 @@
 
 Status of last deployment:
 <br>
-<image src="https://github.com/mak100un/HowLong/workflows/HowLong_CI/badge.svg?branch=master">
+<image src="https://github.com/mak100un/HowLong/workflows/HowLong-CI/badge.svg?branch=master">
 <br>
 
   
