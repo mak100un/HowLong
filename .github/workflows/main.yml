@@ -68,6 +68,4 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Build Project
-      run: |
-        nuget restore ${{ env.PROJECT_PATH }}
-        dotnet build ${{ env.PROJECT_PATH }} -c ${{ env.CONFIGURATION }} --no-restore
+      run: dotnet build ${{ env.PROJECT_PATH }} -c ${{ env.CONFIGURATION }}
