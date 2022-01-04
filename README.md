@@ -1,7 +1,8 @@
 # HowLong
 **This repository contains the «HowLong» sample.**  
 
-Status of last deployment:
+Deployment status:
+<br>
 <br>
 <image src="https://github.com/mak100un/HowLong/workflows/HowLong-CI/badge.svg?branch=master">
 <br>
