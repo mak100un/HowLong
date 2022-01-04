@@ -1,5 +1,11 @@
 # HowLong
 **This repository contains the «HowLong» sample.**  
+
+Status of last deployment:
+<br>
+<image src="https://github.com/mak100un/HowLong/workflows/HowLong_CI/badge.svg?branch=master">
+<br>
+
   
 _Available on Google Play: https://play.google.com/store/apps/details?id=com.incompany.HowLong_
   
