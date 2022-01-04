@@ -32,7 +32,7 @@ jobs:
     
     steps:
     - name: Display files
-      run: dir /a /d /o:gn
+      run: dir /a /d
   
   # This workflow contains a single job called "build"
   clean:
